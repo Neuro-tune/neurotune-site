@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neuro•Tune🎶 | Music Bot for Discord</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <!-- GSAP for animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-  <!-- Wavesurfer.js for waveform -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/wavesurfer.js"></script>
   <style>
     :root {
@@ -18,13 +17,20 @@
       --highlight: #ff80ff;
       --card-bg: #1a1a2e;
       --card-border: #2f2f48;
-      --transition-duration: 0.8s;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
-    nav { position: sticky; top: 0; z-index: 20; background: rgba(15,15,26,0.8); backdrop-filter: blur(10px); }
-    .nav-container { max-width: 960px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem; }
-    .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; cursor: pointer; }
+    /* Progress Bar */
+    .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.1); z-index: 30; }
+    .progress-bar { height: 100%; width: 0; background: var(--highlight); }
+    /* Parallax Layers */
+    .parallax-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
+    .layer1 { background-image: url('https://example.com/notes1.svg'); opacity: 0.2; }
+    .layer2 { background-image: url('https://example.com/notes2.svg'); opacity: 0.15; }
+    .layer3 { background-image: url('https://example.com/notes3.svg'); opacity: 0.1; }
+    nav { position: sticky; top: 4px; z-index: 25; background: rgba(15,15,26,0.8); backdrop-filter: blur(10px); padding-top: 4px; }
+    .nav-container { max-width: 960px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+    .logo { font-weight: 800; font-size: 1.5rem; cursor: pointer; }
     .nav-links { display: flex; gap: 1.5rem; }
     .nav-links a { color: var(--text); text-decoration: none; font-weight: 600; position: relative; }
     .nav-links a::after { content: ''; display: block; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
@@ -33,58 +39,37 @@
     .nav-buttons a:hover { transform: scale(1.05); }
     .invite { background: var(--highlight); color: #000; }
     .support { background: var(--accent); color: #000; }
-
     header { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--gradient); overflow: hidden; }
     #waveform { position: absolute; bottom: 0; width: 100%; height: 150px; }
-    header h1 { font-size: 4rem; font-weight: 800; margin-bottom: 0.5rem; }
+    header h1 { font-size: 4rem; margin-bottom: 0.5rem; }
     header p { font-size: 1.5rem; margin-bottom: 2rem; }
     .hero-buttons a { margin: 0 0.5rem; padding: 0.75rem 1.5rem; border-radius: 2rem; font-weight: 600; color: #000; text-decoration: none; transition: transform 0.3s; }
     .hero-buttons a:hover { transform: scale(1.05); }
-
     section { max-width: 960px; margin: auto; padding: 6rem 2rem; position: relative; }
-    h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; position: relative; }
+    h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; }
     h2::after { content: ''; width: 4rem; height: 4px; background: var(--accent); display: block; margin: 0.5rem auto 0; border-radius: 2px; }
-
-    /* Mood slider */
-    .mood-slider { display: flex; flex-direction: column; align-items: center; }
-    .mood-slider input[type=range] { width: 80%; margin: 2rem 0; }
-    .mood-display { font-size: 1.25rem; font-weight: 600; }
-
-    /* Features grid */
-    .features { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; }
-    .feature { background: var(--card-bg); padding: 1.5rem; border-radius: 1.5rem; border: 1px solid var(--card-border); transition: transform 0.3s; }
-    .feature:hover { transform: translateY(-10px); }
-    .feature h3 { margin-bottom: 0.5rem; color: var(--accent); }
-
-    /* Commands tabs */
-    .tabs { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
-    .tabs button { padding: 0.75rem 1.5rem; border: 1px solid var(--accent); border-radius: 2rem; background: transparent; color: var(--text); cursor: pointer; transition: background 0.3s; }
-    .tabs button.active { background: var(--accent); color: #000; }
-    .commands-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem; }
-    .command-card { background: var(--highlight); padding: 1rem; border-radius: 1rem; cursor: default; }
-
-    /* FAQ */
-    .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .faq-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 1rem; overflow: hidden; transition: transform 0.3s; }
-    .faq-card:hover { transform: translateY(-5px); }
-    .faq-question { padding: 1rem; background: var(--accent); color: #000; font-weight: 600; cursor: pointer; }
+    .features, .commands-list, .faq-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; }
+    .feature, .command-card, .faq-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 1.5rem; overflow: hidden; }
+    .feature { padding: 1.5rem; transform: translateY(50px); opacity: 0; }
+    .feature h3 { color: var(--accent); margin-bottom: 0.5rem; }
+    .command-card, .faq-card { padding: 1rem; cursor: default; }
+    .faq-question { background: var(--accent); color: #000; padding: 1rem; font-weight: 600; }
     .faq-answer { max-height: 0; padding: 0 1rem; color: #ddd; transition: max-height 0.5s ease; }
     .faq-card.open .faq-answer { max-height: 200px; padding-bottom: 1rem; }
-
-    footer { text-align: center; padding: 2rem; color: #888; font-size: 0.875rem; }
-    a { color: var(--accent); }
     html { scroll-behavior: smooth; }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="parallax-layer layer1" data-speed="0.3"></div>
+  <div class="parallax-layer layer2" data-speed="0.6"></div>
+  <div class="parallax-layer layer3" data-speed="0.9"></div>
   <nav>
     <div class="nav-container">
       <div class="logo" onclick="scrollTo('#home')">Neuro•Tune🎶</div>
       <div class="nav-links">
         <a href="#home" class="active">Home</a>
         <a href="#features">Features</a>
-        <a href="#mood">Mood</a>
         <a href="#commands">Commands</a>
         <a href="#faq">FAQ</a>
       </div>
@@ -94,98 +79,68 @@
       </div>
     </div>
   </nav>
-
-  <!-- Hero -->
   <header id="home">
     <div id="waveform"></div>
     <h1>Neuro•Tune🎶</h1>
-    <p>Smart, stylish, vibe-driven music bot for Discord</p>
+    <p>Smart, vibe-driven Discord music bot</p>
     <div class="hero-buttons">
       <a href="#features">Learn More</a>
       <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot%20applications.commands">Try Live Demo</a>
     </div>
   </header>
-
-  <!-- Features -->
   <section id="features">
     <h2>Features</h2>
     <div class="features">
-      <div class="feature"><h3>🎧 Spotify & YouTube</h3><p>Play tracks and playlists from popular platforms effortlessly.</p></div>
-      <div class="feature"><h3>🎶 Mood-based</h3><p>Use <code>/mood</code> to get chill, hype, sad beats and more.</p></div>
-      <div class="feature"><h3>📀 Auto-DJ</h3><p>Never stops playing—auto-selects tracks after queue ends.</p></div>
-      <div class="feature"><h3>🎚️ Filters</h3><p>Customize: bassboost, nightcore, vaporwave, karaoke.</p></div>
-      <div class="feature"><h3>📊 Profile</h3><p>View top tracks, genres, and listening stats.</p></div>
-      <div class="feature"><h3>💎 Premium</h3><p>Unlock exclusive filters and personalization soon.</p></div>
+      <div class="feature"><h3>🎧 Spotify & YouTube</h3><p>Play tracks and playlists from top platforms.</p></div>
+      <div class="feature"><h3>🎶 Mood-based</h3><p>Use <code>/mood</code> to select your vibe.</p></div>
+      <div class="feature"><h3>📀 Auto-DJ</h3><p>Seamless playback even when queue ends.</p></div>
+      <div class="feature"><h3>🎚️ Filters</h3><p>Bassboost, nightcore, vaporwave & more.</p></div>
     </div>
   </section>
-
-  <!-- Mood Slider -->
-  <section id="mood">
-    <h2>Vibe Selector</n2>
-    <div class="mood-slider">
-      <div class="mood-display">Select your mood</div>
-      <input type="range" min="0" max="4" value="2" id="moodRange">
-      <button id="genMood" class="invite">Generate Playlist</button>
-    </div>
-  </section>
-
-  <!-- Commands -->
   <section id="commands">
     <h2>All Commands</h2>
-    <div class="tabs">
-      <button class="active" data-filter="all">All</button>
-      <button data-filter="music">Music</button>
-      <button data-filter="profile">Profile</button>
-      <button data-filter="info">Info</button>
-    </div>
     <div class="commands-list">
-      <!-- (same command cards as before) -->
+      <div class="command-card"><h4>/play</h4><p>Play a track or playlist</p></div>
+      <!-- ... other commands ... -->
     </div>
   </section>
-
-  <!-- FAQ -->
   <section id="faq">
     <h2>FAQ</h2>
     <div class="faq-grid">
-      <!-- (same FAQ cards) -->
+      <div class="faq-card" onclick="toggleFAQ(this)"><div class="faq-question">How to invite?</div><div class="faq-answer"><p>Click Invite above.</p></div></div>
+      <!-- ... other FAQs ... -->
     </div>
   </section>
-
   <footer>
     Neuro•Tune🎶 © 2025 • <a href="https://ko-fi.com/neurotune" target="_blank">Support on Ko-fi</a>
   </footer>
-
   <script>
-    // Initialize waveform
-    const wavesurfer = WaveSurfer.create({ container: '#waveform', waveColor: 'rgba(255,255,255,0.2)', progressColor: 'var(--highlight)', height: 120 });
-    wavesurfer.load('https://example.com/sample.mp3'); // replace with demo track
-
-    // GSAP hero animation
-    gsap.from('header h1', { y: -50, opacity: 0, duration: 1 });
-    gsap.from('header p', { y: 50, opacity: 0, duration: 1, delay: 0.5 });
-
-    // Mood slider logic
-    const moods = ['Chill', 'Hype', 'Sad', 'Party', 'Relax'];
-    const moodDisplay = document.querySelector('.mood-display');
-    const range = document.getElementById('moodRange');
-    range.addEventListener('input', () => { moodDisplay.textContent = moods[range.value]; });
-    document.getElementById('genMood').addEventListener('click', () => {
-      gsap.to('section#mood', { opacity: 0, duration: 0.5, onComplete: () => {
-        window.location.hash = '#commands'; gsap.to('section#commands', { opacity: 1, duration: 0.5 });
-      }});
-    });
-
-    // Smooth scrolling nav
-    document.querySelectorAll('nav a, .logo').forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(el.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
+    // Progress bar
+    window.addEventListener('scroll', () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      document.getElementById('progressBar').style.width = (scrolled / docHeight * 100) + '%';
+      document.querySelectorAll('.parallax-layer').forEach(layer => {
+        const speed = layer.dataset.speed;
+        layer.style.transform = `translateY(${scrolled * speed}px)`;
       });
     });
-
-    // Tabs and FAQ toggle (reuse existing logic)
-    // ... (same as original)
+    // Waveform
+    const wavesurfer = WaveSurfer.create({ container: '#waveform', waveColor: 'rgba(255,255,255,0.2)', progressColor: 'var(--highlight)', height: 120 });
+    wavesurfer.load('https://example.com/sample.mp3');
+    // GSAP ScrollTrigger
+    gsap.utils.toArray('.feature').forEach(el => {
+      gsap.from(el, { y: 50, opacity: 0, duration: 1, scrollTrigger: { trigger: el, start: 'top 80%' } });
+    });
+    // FAQ toggle
+    function toggleFAQ(card) {
+      document.querySelectorAll('.faq-card').forEach(c => c !== card && c.classList.remove('open'));
+      card.classList.toggle('open');
+    }
+    // Smooth nav
+    document.querySelectorAll('nav a, .logo').forEach(el => el.addEventListener('click', e => {
+      e.preventDefault(); document.querySelector(el.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    }));
   </script>
 </body>
 </html>
