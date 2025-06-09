@@ -68,14 +68,47 @@ h2::after { content: ''; width: 4rem; height: 4px; background: var(--accent); di
 .command-card:hover { transform: translateY(-5px); }
 .command-card h4 { margin-bottom: 0.5rem; }
 
-/* FAQ */
-.faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
-.faq-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 1rem; overflow: hidden; transition: transform 0.3s; cursor: pointer; }
-.faq-card:hover { transform: translateY(-5px); }
-.faq-question { background: var(--accent); color: #000; padding: 1rem; font-weight: 600; }
-.faq-answer { max-height: 0; padding: 0 1rem; color: #ddd; transition: max-height 0.5s ease; }
-.faq-card.open .faq-answer { max-height: 200px; padding-bottom: 1rem; }
+/* FAQ: вертикальный список */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
 
+.faq-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.faq-card:hover {
+  transform: translateY(-5px);
+}
+
+.faq-question {
+  background: var(--accent);
+  color: #000;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.faq-answer {
+  max-height: 0;
+  padding: 0 1rem;
+  color: #ddd;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.faq-card.open .faq-answer {
+  max-height: 200px;    /* достаточно для большинства ответов */
+  padding: 0 1rem 1rem; /* добавляем отступ снизу после раскрытия */
+}
 /* Footer */
 footer {
   text-align: center;
