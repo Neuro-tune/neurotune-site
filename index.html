@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neuro•Tune🎶 | Music Bot for Discord</title>
   <link rel="stylesheet" href="styles/main.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
@@ -10,13 +10,14 @@
   <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
-  <!-- Прогресс-бар -->
+  <!-- Progress Bar -->
   <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
-  <!-- Параллакс-слои -->
+  <!-- Parallax Layers -->
   <div class="parallax-layer layer1" data-speed="0.3"></div>
   <div class="parallax-layer layer2" data-speed="0.6"></div>
   <div class="parallax-layer layer3" data-speed="0.9"></div>
 
+  <!-- Navigation -->
   <nav>
     <div class="nav-container">
       <div class="logo" onclick="scrollToSection('home')">Neuro•Tune🎶</div>
@@ -33,6 +34,7 @@
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <header id="home">
     <div id="waveform"></div>
     <h1>Neuro•Tune🎶</h1>
@@ -43,6 +45,7 @@
     </div>
   </header>
 
+  <!-- Features Section -->
   <section id="features">
     <h2>Features</h2>
     <div class="features">
@@ -53,17 +56,43 @@
     </div>
   </section>
 
+  <!-- Commands Section -->
   <section id="commands">
     <h2>All Commands</h2>
+    <div class="tabs">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="music">Music</button>
+      <button data-filter="profile">Profile</button>
+      <button data-filter="info">Info</button>
+    </div>
     <div class="commands-list">
-      <!-- Команды по категориям -->
+      <div class="command-card" data-category="music"><h4>/play</h4><p>Play a track or playlist.</p></div>
+      <div class="command-card" data-category="music"><h4>/pause</h4><p>Pause the current track.</p></div>
+      <div class="command-card" data-category="music"><h4>/resume</h4><p>Resume paused music.</p></div>
+      <div class="command-card" data-category="music"><h4>/skip</h4><p>Skip to next track.</p></div>
+      <div class="command-card" data-category="music"><h4>/queue</h4><p>Show current queue.</p></div>
+      <div class="command-card" data-category="music"><h4>/nowplaying</h4><p>Display track that’s playing.</p></div>
+      <div class="command-card" data-category="music"><h4>/mood</h4><p>Generate playlist by mood.</p></div>
+      <div class="command-card" data-category="music"><h4>/filter &lt;name&gt;</h4><p>Apply audio filter.</p></div>
+      <div class="command-card" data-category="music"><h4>/lyrics</h4><p>Show lyrics for current track.</p></div>
+      <div class="command-card" data-category="profile"><h4>/profile</h4><p>View your music profile.</p></div>
+      <div class="command-card" data-category="profile"><h4>/stats</h4><p>Show listening stats.</p></div>
+      <div class="command-card" data-category="profile"><h4>/top</h4><p>Show top tracks/artists.</p></div>
+      <div class="command-card" data-category="info"><h4>/ping</h4><p>Check bot latency.</p></div>
+      <div class="command-card" data-category="info"><h4>/support</h4><p>Get support server link.</p></div>
+      <div class="command-card" data-category="info"><h4>/invite</h4><p>Get bot’s invite link.</p></div>
+      <div class="command-card" data-category="info"><h4>/help</h4><p>Show help menu.</p></div>
     </div>
   </section>
 
+  <!-- FAQ Section -->
   <section id="faq">
     <h2>FAQ</h2>
     <div class="faq-grid">
-      <!-- Вопросы -->
+      <div class="faq-card"><div class="faq-question">How do I invite Neuro•Tune?</div><div class="faq-answer"><p>Click the "Invite" button in the nav or use <code>/invite</code>.</p></div></div>
+      <div class="faq-card"><div class="faq-question">Which platforms are supported?</div><div class="faq-answer"><p>Supports Spotify, YouTube, SoundCloud, Deezer, Apple Music, and more.</p></div></div>
+      <div class="faq-card"><div class="faq-question">How can I apply filters?</div><div class="faq-answer"><p>Use <code>/filter &lt;name&gt;</code> with names like bassboost, nightcore, 8D.</p></div></div>
+      <div class="faq-card"><div class="faq-question">When will Premium release?</div><div class="faq-answer"><p>Premium features coming soon! Follow updates on our Ko-fi page.</p></div></div>
     </div>
   </section>
 
