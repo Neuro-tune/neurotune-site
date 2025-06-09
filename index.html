@@ -187,8 +187,10 @@
       cards.forEach(card => card.style.display = filter === 'all' || card.getAttribute('data-category') === filter ? 'block' : 'none');
     }));
 
-    // FAQ toggle
+    // FAQ toggle: only one open at a time
     function toggleFAQ(card) {
+      const all = document.querySelectorAll('.faq-card');
+      all.forEach(c => { if (c !== card) c.classList.remove('open'); });
       card.classList.toggle('open');
     }
   </script>
