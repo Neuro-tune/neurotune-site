@@ -14,6 +14,7 @@
       --highlight: #ff80ff;
       --card-bg: #1a1a2e;
       --card-border: #2f2f48;
+      --transition-duration: 0.8s;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
@@ -22,17 +23,23 @@
     .nav-links { display: flex; gap: 1.5rem; }
     .nav-links a { color: var(--text); text-decoration: none; font-weight: 600; transition: color 0.3s; }
     .nav-links a.active, .nav-links a:hover { color: var(--accent); }
-    header { background: var(--gradient); padding: 6rem 2rem 4rem; text-align: center; scroll-margin-top: 80px; }
+    .cta-btn { background: var(--highlight); color: #000; padding: 0.5rem 1rem; border-radius: 1.5rem; text-decoration: none; font-weight: 600; }
+
+    header, section { max-width: 960px; margin: auto; padding: 4rem 2rem; scroll-margin-top: 80px; }
+    header { background: var(--gradient); text-align: center; }
     header h1 { font-size: 3rem; font-weight: 800; }
     header p { font-size: 1.25rem; margin-top: 0.5rem; }
-    section { padding: 4rem 2rem; max-width: 960px; margin: auto; scroll-margin-top: 80px; }
+
+    /* Animation wrapper */
+    .section-anim { opacity: 0; transform: translateY(40px); transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out; }
+    .section-anim.visible { opacity: 1; transform: none; }
+
+    /* Features */
     .features { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .feature { background: var(--card-bg); padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--card-border); }
     .feature h3 { margin-bottom: 0.5rem; color: var(--accent); }
-    .cta { text-align: center; margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; }
-    .cta a { display: inline-block; background: var(--highlight); color: #000; padding: 1rem 2rem; border-radius: 2rem; font-weight: 600; text-decoration: none; transition: opacity 0.3s; }
-    .cta a.secondary { background: var(--accent); }
-    /* Commands Section */
+
+    /* Commands */
     .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; }
     .tabs button { padding: 0.75rem 1.5rem; border: 1px solid var(--accent); border-radius: 2rem; background: transparent; color: var(--text); cursor: pointer; transition: background 0.3s; }
     .tabs button.active, .tabs button:hover { background: var(--accent); color: #000; }
@@ -40,10 +47,16 @@
     .command-card { background: var(--highlight); padding: 1rem; border-radius: 1rem; }
     .command-card h4 { margin-bottom: 0.5rem; color: #000; }
     .command-card p { background: var(--card-bg); padding: 0.5rem; border-radius: 0.5rem; }
-    /* FAQ Section */
+
+    /* FAQ */
     .faq-item { margin-bottom: 1rem; }
     .faq-item summary { font-weight: 600; cursor: pointer; list-style: none; }
     .faq-item p { margin-top: 0.5rem; padding-left: 1rem; }
+
+    /* Sections Titles */
+    h2 { font-size: 2rem; text-align: center; margin-bottom: 1.5rem; position: relative; }
+    h2::after { content: ''; width: 4rem; height: 4px; background: var(--accent); display: block; margin: 0.5rem auto 0; border-radius: 2px; }
+
     footer { text-align: center; font-size: 0.875rem; padding: 2rem; color: #888; }
     html { scroll-behavior: smooth; }
   </style>
@@ -61,18 +74,18 @@
         <a href="#support">Support</a>
         <a href="#terms">Terms</a>
       </div>
-      <a href="https://discord.com/oauth2/authorize?client_id=1374414380137185312&scope=bot%20applications.commands" class="cta-btn">Invite</a>
+      <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot%20applications.commands" class="cta-btn">Invite</a>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header id="home">
+  <header id="home" class="section-anim">
     <h1>Neuro•Tune🎶</h1>
     <p>Smart, stylish, vibe-driven music bot for Discord</p>
   </header>
 
   <!-- Features -->
-  <section id="features">
+  <section id="features" class="section-anim">
     <h2>Features</h2>
     <div class="features">
       <div class="feature">
@@ -103,7 +116,7 @@
   </section>
 
   <!-- Commands -->
-  <section id="commands">
+  <section id="commands" class="section-anim">
     <h2>All Commands</h2>
     <div class="tabs">
       <button class="active" data-filter="all">All</button>
@@ -112,85 +125,85 @@
       <button data-filter="info">Info</button>
     </div>
     <div class="commands-list">
-  <!-- Music Commands -->
-  <div class="command-card" data-category="music">
-    <h4>/play</h4>
-    <p>Play a track or playlist from YouTube/Spotify/etc.</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/pause</h4>
-    <p>Pause the current track.</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/resume</h4>
-    <p>Resume paused music.</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/skip</h4>
-    <p>Skip to the next track in queue.</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/queue</h4>
-    <p>Show the current song queue.</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/nowplaying</h4>
-    <p>Display the track that’s currently playing.</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/mood</h4>
-    <p>Generate a playlist by mood (chill, hype, sad…).</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/filter &lt;name&gt;</h4>
-    <p>Apply an audio filter (bassboost, nightcore, 8D…).</p>
-  </div>
-  <div class="command-card" data-category="music">
-    <h4>/lyrics</h4>
-    <p>Show lyrics for the current track.</p>
-  </div>
+      <!-- Music Commands -->
+      <div class="command-card" data-category="music">
+        <h4>/play</h4>
+        <p>Play a track or playlist from YouTube/Spotify/etc.</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/pause</h4>
+        <p>Pause the current track.</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/resume</h4>
+        <p>Resume paused music.</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/skip</h4>
+        <p>Skip to the next track in queue.</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/queue</h4>
+        <p>Show the current song queue.</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/nowplaying</h4>
+        <p>Display the track that’s currently playing.</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/mood</h4>
+        <p>Generate a playlist by mood (chill, hype, sad…).</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/filter &lt;name&gt;</h4>
+        <p>Apply an audio filter (bassboost, nightcore, 8D…).</p>
+      </div>
+      <div class="command-card" data-category="music">
+        <h4>/lyrics</h4>
+        <p>Show lyrics for the current track.</p>
+      </div>
 
-  <!-- Profile Commands -->
-  <div class="command-card" data-category="profile">
-    <h4>/profile</h4>
-    <p>View your music profile (top tracks, genres).</p>
-  </div>
-  <div class="command-card" data-category="profile">
-    <h4>/stats</h4>
-    <p>Show your listening stats.</p>
-  </div>
-  <div class="command-card" data-category="profile">
-    <h4>/top</h4>
-    <p>Display your top tracks or artists.</p>
-  </div>
+      <!-- Profile Commands -->
+      <div class="command-card" data-category="profile">
+        <h4>/profile</h4>
+        <p>View your music profile (top tracks, genres).</p>
+      </div>
+      <div class="command-card" data-category="profile">
+        <h4>/stats</h4>
+        <p>Show your listening stats.</p>
+      </div>
+      <div class="command-card" data-category="profile">
+        <h4>/top</h4>
+        <p>Display your top tracks or artists.</p>
+      </div>
 
-  <!-- Info Commands -->
-  <div class="command-card" data-category="info">
-    <h4>/ping</h4>
-    <p>Check bot latency.</p>
-  </div>
-  <div class="command-card" data-category="info">
-    <h4>/support</h4>
-    <p>Get an invite to the support server.</p>
-  </div>
-  <div class="command-card" data-category="info">
-    <h4>/invite</h4>
-    <p>Get the bot’s invite link.</p>
-  </div>
-  <div class="command-card" data-category="info">
-    <h4>/help</h4>
-    <p>Show this help menu.</p>
-  </div>
-</div>
+      <!-- Info Commands -->
+      <div class="command-card" data-category="info">
+        <h4>/ping</h4>
+        <p>Check bot latency.</p>
+      </div>
+      <div class="command-card" data-category="info">
+        <h4>/support</h4>
+        <p>Get an invite to the support server.</p>
+      </div>
+      <div class="command-card" data-category="info">
+        <h4>/invite</h4>
+        <p>Get the bot’s invite link.</p>
+      </div>
+      <div class="command-card" data-category="info">
+        <h4>/help</h4>
+        <p>Show this help menu.</p>
+      </div>
+    </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq">
+  <section id="faq" class="section-anim">
     <h2>FAQ</h2>
     <div class="faq-item">
       <details>
         <summary>How do I invite Neuro•Tune to my server?</summary>
-        <p>Click on the "Invite" button in the top navigation or use the invite link above to add the bot.</p>
+        <p>Click on the "Invite" button in the navigation or use the invite link above to add the bot.</p>
       </details>
     </div>
     <div class="faq-item">
@@ -208,22 +221,33 @@
   </section>
 
   <!-- Support & Terms -->
-  <section id="support">
+  <section id="support" class="section-anim">
     <h2>Support</h2>
-    <p>Join our <a href="https://discord.gg/uAZRt6Xg" style="color: var(--accent);">Discord Support Server</a> for help and updates.</p>
+    <p>Join our <a href="https://discord.gg/YOUR_SUPPORT_SERVER" style="color: var(--accent);">Discord Support Server</a> for help and updates.</p>
   </section>
-  <section id="terms">
+  <section id="terms" class="section-anim">
     <h2>Terms & Service</h2>
     <p>Read our <a href="#" style="color: var(--accent);">Terms & Service</a> and <a href="#" style="color: var(--accent);">Privacy Policy</a>.</p>
   </section>
 
-  <footer>
+  <footer class="section-anim">
     Neuro•Tune🎶 © 2025 • <a href="https://ko-fi.com/neurotune" target="_blank" style="color: var(--highlight);">Support on Ko-fi</a>
   </footer>
 
   <script>
+    // IntersectionObserver for section animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.section-anim').forEach(el => observer.observe(el));
+
     // Scroll effect for active nav link
-    const sections = document.querySelectorAll('section, header');
+    const sections = document.querySelectorAll('header[id], section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
       let current = '';
@@ -236,7 +260,8 @@
         if (link.getAttribute('href') === '#' + current) link.classList.add('active');
       });
     });
-    // Commands filter
+
+    // Commands filter logic
     const tabs = document.querySelectorAll('.tabs button');
     const cards = document.querySelectorAll('.command-card');
     tabs.forEach(tab => {
