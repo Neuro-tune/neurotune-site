@@ -64,11 +64,15 @@ body {
   border-radius: 30px;
   text-decoration: none;
   transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px #00ffff30;
 }
 
 .btn:hover {
   background-color: #00ffff;
   color: #0f0f1a;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
 }
 
 section {
@@ -103,4 +107,38 @@ h2 {
 .feature-card:hover, .command-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 15px #00ffffaa;
+}
+
+/* 🎵 Падающие ноты */
+.music-notes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.note {
+  position: absolute;
+  color: #00ffff;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  animation: fall 8s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
