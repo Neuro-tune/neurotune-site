@@ -2,34 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neuro•Tune 🎶</title>
-  <link rel="stylesheet" href="main.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neuro•Tune</title>
+  <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
-  <div class="neon-bg"></div>
+  <!-- Живой фон -->
+  <div class="music-bg"></div>
 
-  <header class="hero">
-    <h1>Neuro•Tune 🎶</h1>
+  <!-- Прогресс-бар -->
+  <div id="progressBar"></div>
+
+  <!-- Навигация -->
+  <nav>
+    <div class="logo" href="#home">Neuro•Tune 🎵</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <!-- Главный блок -->
+  <header id="home">
+    <h1>Neuro•Tune 🎵</h1>
     <p>Smart, vibe-driven Discord music bot</p>
     <div class="buttons">
-      <a href="#" class="btn">Learn More</a>
-      <a href="#" class="btn">Try Demo</a>
+      <a href="#">Learn More</a>
+      <a href="#">Try Demo</a>
     </div>
+    <div id="waveform"></div>
   </header>
 
-  <section class="features">
+  <!-- Features -->
+  <section id="features">
     <h2>Features</h2>
     <div class="grid">
-      <div class="feature-card">Spotify & YouTube playback</div>
-      <div class="feature-card">Mood-based playlists</div>
-      <div class="feature-card">Auto-DJ & filters</div>
-      <div class="feature-card">User music profile</div>
+      <div class="card">Spotify & YouTube playback</div>
+      <div class="card">Mood-based playlists</div>
+      <div class="card">Auto-DJ & filters</div>
+      <div class="card">User music profile</div>
     </div>
   </section>
 
-  <section class="commands">
+  <!-- Commands -->
+  <section id="commands">
     <h2>Commands</h2>
+    <div class="tabs">
+      <button class="active">All</button>
+      <button>Music</button>
+      <button>Profile</button>
+      <button>Info</button>
+    </div>
     <div class="grid">
       <div class="command-card">/play [song] – play a track</div>
       <div class="command-card">/pause – pause</div>
@@ -38,28 +63,19 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <details><summary>How do I invite Neuro•Tune?</summary><p>Click the "Invite" button in the nav or use /invite.</p></details>
+    <details><summary>Which platforms are supported?</summary><p>Supports Spotify, YouTube, SoundCloud, Deezer, Apple Music, and more.</p></details>
+    <details><summary>How can I apply filters?</summary><p>Use /filter &lt;name&gt; with names like bassboost, nightcore, 8D.</p></details>
+    <details><summary>When will Premium release?</summary><p>Soon! Stay tuned for updates on our Discord.</p></details>
+  </section>
+
+  <!-- Скрипты -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/wavesurfer.js"></script>
   <script src="main.js"></script>
-<div class="music-notes">
-  <span class="note" style="left:5%; animation-delay: 0s;">🎵</span>
-  <span class="note" style="left:15%; animation-delay: 2s;">🎶</span>
-  <span class="note" style="left:25%; animation-delay: 4s;">🎵</span>
-  <span class="note" style="left:35%; animation-delay: 1s;">🎶</span>
-  <span class="note" style="left:45%; animation-delay: 3s;">🎵</span>
-  <span class="note" style="left:55%; animation-delay: 0.5s;">🎶</span>
-  <span class="note" style="left:65%; animation-delay: 2.5s;">🎵</span>
-  <span class="note" style="left:75%; animation-delay: 1.5s;">🎶</span>
-  <span class="note" style="left:85%; animation-delay: 4.5s;">🎵</span>
-  <span class="note" style="left:95%; animation-delay: 3.5s;">🎶</span>
-</div>
-<!-- GSAP и ScrollTrigger -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-<!-- WaveSurfer.js -->
-<script src="https://unpkg.com/wavesurfer.js"></script>
-
-<!-- Твой JS -->
-<script src="main.js"></script>
-
 </body>
 </html>
