@@ -106,10 +106,15 @@ document.querySelectorAll('.faq-question').forEach(q => {
 // 8) Live music‑reactive canvas background
 
 // Audio analyser setup
-const audioCtx = wavesurfer.backend.ac;
+const audioCtx = wavesurfer.backend.getAudioContext 
+  ? wavesurfer.backend.getAudioContext() 
+  : wavesurfer.backend.ac;
 const analyser = audioCtx.createAnalyser();
-audioCtx.source.connect(analyser);
+audioCtx.destination.connect(analyser); // или wavesurfer.backend.sourceNode.connect(analyser)
 analyser.fftSize = 128;
+
+// Correct load path
+wavesurfer.load('sample.mp3');
 
 // Canvas setup
 const canvas = document.getElementById('bg-canvas');
