@@ -3,58 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neuro•Tune</title>
-  <link rel="stylesheet" href="main.css" />
+  <title>Neuro•Tune🎶 | Music Bot for Discord</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
+  <!-- Progress Bar -->
+  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+  <!-- Parallax Layers -->
+  <div class="parallax-layer layer1" data-speed="0.3"></div>
+  <div class="parallax-layer layer2" data-speed="0.6"></div>
+  <div class="parallax-layer layer3" data-speed="0.9"></div>
+
+  <!-- Navigation -->
   <nav>
-    <ul class="nav">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#commands">Commands</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
+    <div class="nav-container">
+      <div class="logo" onclick="scrollToSection('home')">Neuro•Tune🎶</div>
+      <div class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#features">Features</a>
+        <a href="#commands">Commands</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-buttons">
+        <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot%20applications.commands" class="invite">Invite</a>
+        <a href="https://ko-fi.com/neurotune" class="support">Support on Ko-fi</a>
+      </div>
+    </div>
   </nav>
 
-  <section id="home" class="section gradient-bg">
-    <h1 class="neon-text">Welcome to Neuro•Tune 🎶</h1>
-    <p class="description">Your ultimate music companion for Discord</p>
+  <!-- Hero Section -->
+  <header id="home">
+    <div id="waveform"></div>
+    <h1>Neuro•Tune🎶</h1>
+    <p>Smart, vibe-driven Discord music bot</p>
+    <div class="hero-buttons">
+      <a href="#features">Learn More</a>
+      <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot%20applications.commands">Try Live Demo</a>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature"><h3>🎧 Spotify & YouTube</h3><p>Play tracks/playlists with ease.</p></div>
+      <div class="feature"><h3>🎶 Mood-based</h3><p><code>/mood</code> to pick your vibe.</p></div>
+      <div class="feature"><h3>📀 Auto-DJ</h3><p>Seamless continuous play.</p></div>
+      <div class="feature"><h3>🎚️ Filters</h3><p>Bassboost, nightcore, vaporwave & more.</p></div>
+    </div>
   </section>
 
-  <section id="features" class="section dark-section">
-    <h2 class="neon-text">Features</h2>
-    <div class="card-neon">Supports Spotify, YouTube, SoundCloud, Deezer</div>
-    <div class="card-neon">Apply filters: bassboost, nightcore, 8D and more</div>
-    <div class="card-neon">Mood-based playlists & auto-DJ</div>
+  <!-- Commands Section -->
+  <section id="commands">
+    <h2>All Commands</h2>
+    <div class="tabs">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="music">Music</button>
+      <button data-filter="profile">Profile</button>
+      <button data-filter="info">Info</button>
+    </div>
+    <div class="commands-list">
+      <div class="command-card" data-category="music"><h4>/play</h4><p>Play a track or playlist.</p></div>
+      <div class="command-card" data-category="music"><h4>/pause</h4><p>Pause the current track.</p></div>
+      <div class="command-card" data-category="music"><h4>/resume</h4><p>Resume paused music.</p></div>
+      <div class="command-card" data-category="music"><h4>/skip</h4><p>Skip to next track.</p></div>
+      <div class="command-card" data-category="music"><h4>/queue</h4><p>Show current queue.</p></div>
+      <div class="command-card" data-category="music"><h4>/nowplaying</h4><p>Display track that’s playing.</p></div>
+      <div class="command-card" data-category="music"><h4>/mood</h4><p>Generate playlist by mood.</p></div>
+      <div class="command-card" data-category="music"><h4>/filter &lt;name&gt;</h4><p>Apply audio filter.</p></div>
+      <div class="command-card" data-category="music"><h4>/lyrics</h4><p>Show lyrics for current track.</p></div>
+      <div class="command-card" data-category="profile"><h4>/profile</h4><p>View your music profile.</p></div>
+      <div class="command-card" data-category="profile"><h4>/stats</h4><p>Show listening stats.</p></div>
+      <div class="command-card" data-category="profile"><h4>/top</h4><p>Show top tracks/artists.</p></div>
+      <div class="command-card" data-category="info"><h4>/ping</h4><p>Check bot latency.</p></div>
+      <div class="command-card" data-category="info"><h4>/support</h4><p>Get support server link.</p></div>
+      <div class="command-card" data-category="info"><h4>/invite</h4><p>Get bot’s invite link.</p></div>
+      <div class="command-card" data-category="info"><h4>/help</h4><p>Show help menu.</p></div>
+    </div>
   </section>
 
-  <section id="commands" class="section dark-section">
-    <h2 class="neon-text">Commands</h2>
-    <div class="card-neon">/play [song name] — play a track</div>
-    <div class="card-neon">/filter [type] — apply effects</div>
-    <div class="card-neon">/skip — skip current song</div>
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-grid">
+      <div class="faq-card">
+        <div class="faq-question">How do I invite Neuro•Tune?</div>
+        <div class="faq-answer"><p>Click the "Invite" button in the nav or use <code>/invite</code>.</p></div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-question">Which platforms are supported?</div>
+        <div class="faq-answer"><p>Supports Spotify, YouTube, SoundCloud, Deezer, Apple Music, and more.</p></div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-question">How can I apply filters?</div>
+        <div class="faq-answer"><p>Use <code>/filter &lt;name&gt;</code> with names like bassboost, nightcore, 8D.</p></div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-question">When will Premium release?</div>
+        <div class="faq-answer"><p>Premium features coming soon! Follow updates on our Ko-fi page.</p></div>
+      </div>
+    </div>
   </section>
 
-  <section id="faq" class="section dark-section">
-    <h2 class="neon-text">FAQ</h2>
-    <details class="faq-item">
-      <summary>How do I invite Neuro•Tune?</summary>
-      <p>Click the "Invite" button in the nav or use /invite.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Which platforms are supported?</summary>
-      <p>Spotify, YouTube, SoundCloud, Deezer, Apple Music and more.</p>
-    </details>
-    <details class="faq-item">
-      <summary>How can I apply filters?</summary>
-      <p>Use /filter &lt;name&gt; — e.g. bassboost, nightcore, 8D.</p>
-    </details>
-    <details class="faq-item">
-      <summary>When will Premium release?</summary>
-      <p>Coming soon — stay tuned in our Discord!</p>
-    </details>
-  </section>
+  <footer>
+    Neuro•Tune🎶 © 2025 • <a href="https://ko-fi.com/neurotune" target="_blank">Support on Ko-fi</a>
+  </footer>
 
-  <script src="main.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
