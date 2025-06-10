@@ -12,6 +12,10 @@
 <body>
   <!-- Progress Bar -->
   <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
+  <!-- Music‑Reactive Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
   <!-- Parallax Layers -->
   <div class="parallax-layer layer1" data-speed="0.3"></div>
   <div class="parallax-layer layer2" data-speed="0.6"></div>
@@ -28,7 +32,7 @@
         <a href="#faq">FAQ</a>
       </div>
       <div class="nav-buttons">
-        <a href="https://discord.com/oauth2/authorize?client_id=1374414380137185312&scope=bot%20applications.commands" class="invite">Invite</a>
+        <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot%20applications.commands" class="invite">Invite</a>
         <a href="https://ko-fi.com/neurotune" class="support">Support on Ko-fi</a>
       </div>
     </div>
@@ -41,7 +45,7 @@
     <p>Smart, vibe-driven Discord music bot</p>
     <div class="hero-buttons">
       <a href="#features">Learn More</a>
-      <a href="https://discord.gg/uAZRt6Xg">Try Live Demo</a>
+      <a href="https://discord.com/oauth2/authorize?client_id=YOUR_BOT_ID&scope=bot%20applications.commands">Try Live Demo</a>
     </div>
   </header>
 
@@ -66,6 +70,7 @@
       <button data-filter="info">Info</button>
     </div>
     <div class="commands-list">
+      <!-- Music Commands -->
       <div class="command-card" data-category="music"><h4>/play</h4><p>Play a track or playlist.</p></div>
       <div class="command-card" data-category="music"><h4>/pause</h4><p>Pause the current track.</p></div>
       <div class="command-card" data-category="music"><h4>/resume</h4><p>Resume paused music.</p></div>
@@ -75,9 +80,11 @@
       <div class="command-card" data-category="music"><h4>/mood</h4><p>Generate playlist by mood.</p></div>
       <div class="command-card" data-category="music"><h4>/filter &lt;name&gt;</h4><p>Apply audio filter.</p></div>
       <div class="command-card" data-category="music"><h4>/lyrics</h4><p>Show lyrics for current track.</p></div>
+      <!-- Profile Commands -->
       <div class="command-card" data-category="profile"><h4>/profile</h4><p>View your music profile.</p></div>
       <div class="command-card" data-category="profile"><h4>/stats</h4><p>Show listening stats.</p></div>
       <div class="command-card" data-category="profile"><h4>/top</h4><p>Show top tracks/artists.</p></div>
+      <!-- Info Commands -->
       <div class="command-card" data-category="info"><h4>/ping</h4><p>Check bot latency.</p></div>
       <div class="command-card" data-category="info"><h4>/support</h4><p>Get support server link.</p></div>
       <div class="command-card" data-category="info"><h4>/invite</h4><p>Get bot’s invite link.</p></div>
@@ -86,27 +93,27 @@
   </section>
 
   <!-- FAQ Section -->
-<section id="faq">
-  <h2>FAQ</h2>
-  <div class="faq-list">
-    <div class="faq-card">
-      <div class="faq-question">How do I invite Neuro•Tune?</div>
-      <div class="faq-answer"><p>Click the "Invite" button in the nav or use <code>/invite</code>.</p></div>
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-card">
+        <div class="faq-question">How do I invite Neuro•Tune?</div>
+        <div class="faq-answer"><p>Click the "Invite" button in the nav or use <code>/invite</code>.</p></div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-question">Which platforms are supported?</div>
+        <div class="faq-answer"><p>Supports Spotify, YouTube, SoundCloud, Deezer, Apple Music, and more.</p></div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-question">How can I apply filters?</div>
+        <div class="faq-answer"><p>Use <code>/filter &lt;name&gt;</code> with names like bassboost, nightcore, 8D.</p></div>
+      </div>
+      <div class="faq-card">
+        <div class="faq-question">When will Premium release?</div>
+        <div class="faq-answer"><p>Premium features coming soon! Follow updates on our Ko-fi page.</p></div>
+      </div>
     </div>
-    <div class="faq-card">
-      <div class="faq-question">Which platforms are supported?</div>
-      <div class="faq-answer"><p>Supports Spotify, YouTube, SoundCloud, Deezer, Apple Music, and more.</p></div>
-    </div>
-    <div class="faq-card">
-      <div class="faq-question">How can I apply filters?</div>
-      <div class="faq-answer"><p>Use <code>/filter &lt;name&gt;</code> with names like bassboost, nightcore, 8D.</p></div>
-    </div>
-    <div class="faq-card">
-      <div class="faq-question">When will Premium release?</div>
-      <div class="faq-answer"><p>Premium features coming soon! Follow updates on our Ko‑fi page.</p></div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <footer>
     Neuro•Tune🎶 © 2025 • <a href="https://ko-fi.com/neurotune" target="_blank">Support on Ko-fi</a>
