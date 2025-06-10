@@ -7,6 +7,7 @@
   --card-bg: #1a1a2e;
   --card-border: #2f2f48;
 }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 html { scroll-behavior: smooth; }
@@ -14,6 +15,18 @@ html { scroll-behavior: smooth; }
 /* Progress Bar */
 .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.1); z-index: 30; }
 .progress-bar { height: 100%; width: 0; background: var(--highlight); }
+
+/* Canvas Background */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  pointer-events: none;
+  background: transparent;
+}
 
 /* Parallax Layers */
 .parallax-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-repeat: no-repeat; background-position: center; pointer-events: none; }
@@ -25,7 +38,8 @@ html { scroll-behavior: smooth; }
 nav { position: sticky; top: 4px; background: rgba(15,15,26,0.8); backdrop-filter: blur(10px); z-index: 25; padding-top: 4px; }
 .nav-container { max-width: 960px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem; }
 .nav-links a { color: var(--text); text-decoration: none; font-weight: 600; position: relative; margin: 0 0.5rem; }
-.nav-links a.active::after, .nav-links a:hover::after {
+.nav-links a.active::after,
+.nav-links a:hover::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -66,49 +80,15 @@ h2::after { content: ''; width: 4rem; height: 4px; background: var(--accent); di
 .commands-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; }
 .command-card { background: var(--highlight); padding: 1rem; border-radius: 1rem; transition: transform 0.3s; }
 .command-card:hover { transform: translateY(-5px); }
-.command-card h4 { margin-bottom: 0.5rem; }
 
-/* FAQ: вертикальный список */
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem 0;
-}
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto; padding: 1rem 0; }
+.faq-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 1rem; overflow: hidden; transition: transform 0.3s; cursor: pointer; }
+.faq-card:hover { transform: translateY(-5px); }
+.faq-question { background: var(--accent); color: #000; padding: 1rem; font-weight: 600; }
+.faq-answer { max-height: 0; padding: 0 1rem; color: #ddd; transition: max-height 0.5s ease, padding 0.5s ease; }
+.faq-card.open .faq-answer { max-height: 200px; padding: 0 1rem 1rem; }
 
-.faq-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 1rem;
-  overflow: hidden;
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-
-.faq-card:hover {
-  transform: translateY(-5px);
-}
-
-.faq-question {
-  background: var(--accent);
-  color: #000;
-  padding: 1rem;
-  font-weight: 600;
-}
-
-.faq-answer {
-  max-height: 0;
-  padding: 0 1rem;
-  color: #ddd;
-  transition: max-height 0.5s ease, padding 0.5s ease;
-}
-
-.faq-card.open .faq-answer {
-  max-height: 200px;    /* достаточно для большинства ответов */
-  padding: 0 1rem 1rem; /* добавляем отступ снизу после раскрытия */
-}
 /* Footer */
 footer {
   text-align: center;
