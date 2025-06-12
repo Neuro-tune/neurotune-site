@@ -1,80 +1,199 @@
+/* Основной фон */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #0a0a0a;
-  color: #fff;
+  background: #0b0b15;
+  color: white;
   overflow-x: hidden;
 }
 
-.nav {
+/* Живой фон (анимация нот) */
+.music-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, #1b1b2f 0%, #0b0b15 100%);
+  overflow: hidden;
+  z-index: -2;
+}
+
+.music-bg::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url('https://i.imgur.com/HMFZ4Ej.png') repeat;
+  animation: moveNotes 60s linear infinite;
+  opacity: 0.04;
+}
+
+@keyframes moveNotes {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-50%, -50%); }
+}
+
+/* Прогресс-бар */
+#progressBar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 4px;
+  width: 0%;
+  background: cyan;
+  z-index: 999;
+}
+
+/* Навигация */
+nav {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  padding: 1em 2em;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  z-index: 100;
 }
-.nav a {
-  color: #fff;
-  text-decoration: none;
+
+nav .logo {
   font-weight: bold;
-  transition: 0.3s;
-}
-.nav a:hover {
-  color: #39f;
-  text-shadow: 0 0 8px #39f;
-}
-
-.section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.gradient-bg {
-  background: linear-gradient(120deg, #0f0f0f, #1a1a1a);
-}
-
-.dark-section {
-  background: #111;
-}
-
-.neon-text {
-  font-size: 2.5rem;
-  color: #0ff;
-  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
-}
-
-.card-neon {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  border-radius: 10px;
-  padding: 1rem;
-  margin: 1rem auto;
-  max-width: 600px;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-  transition: 0.3s;
-}
-.card-neon:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-}
-
-.faq-item {
-  background: rgba(255, 255, 255, 0.02);
-  margin: 1rem auto;
-  max-width: 600px;
-  padding: 1rem;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  border-radius: 8px;
+  font-size: 1.5em;
   cursor: pointer;
 }
-.faq-item summary {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #0ff;
-  text-shadow: 0 0 5px #0ff;
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5em;
 }
-.faq-item p {
-  margin-top: 0.5rem;
-  text-align: left;
-  line-height: 1.5;
+
+nav a {
+  color: cyan;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* Главная */
+header {
+  text-align: center;
+  padding: 5em 1em;
+}
+
+header h1 {
+  font-size: 3em;
+  color: cyan;
+  text-shadow: 0 0 20px cyan;
+}
+
+header p {
+  font-size: 1.2em;
+  color: #aaa;
+  margin-bottom: 1em;
+}
+
+.buttons a {
+  margin: 0 1em;
+  padding: 0.6em 1.2em;
+  border: 1px solid cyan;
+  border-radius: 10px;
+  text-decoration: none;
+  color: cyan;
+  transition: 0.3s;
+}
+
+.buttons a:hover {
+  background: cyan;
+  color: black;
+}
+
+/* Разделы */
+section {
+  padding: 4em 2em;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 2em auto;
+  border-radius: 20px;
+  max-width: 1000px;
+}
+
+h2 {
+  text-align: center;
+  color: cyan;
+  font-size: 2em;
+  margin-bottom: 1em;
+  text-shadow: 0 0 10px cyan;
+}
+
+/* Сетки */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5em;
+}
+
+.card, .command-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1em;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid cyan;
+  transition: 0.3s;
+}
+
+.card:hover, .command-card:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Вкладки */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.tabs button {
+  padding: 0.5em 1em;
+  background: transparent;
+  color: cyan;
+  border: 1px solid cyan;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tabs button.active,
+.tabs button:hover {
+  background: cyan;
+  color: black;
+}
+
+/* FAQ */
+details {
+  margin-bottom: 1em;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid cyan;
+  cursor: pointer;
+}
+
+details summary {
+  font-weight: bold;
+  cursor: pointer;
+  color: cyan;
+}
+
+details p {
+  margin-top: 0.5em;
+  color: #ddd;
+}
+
+/* Waveform */
+#waveform {
+  margin-top: 2em;
 }
