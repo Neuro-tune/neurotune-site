@@ -73,3 +73,8 @@ tabs.forEach(tab => {
     });
   });
 });
+// 6) Бургер-меню
+document.querySelector('.burger')?.addEventListener('click', () => {
+  document.querySelector('.nav-links').classList.toggle('show');
+});
+
