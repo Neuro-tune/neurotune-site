@@ -47,21 +47,37 @@
   </section>
 
   <!-- Commands -->
-  <section id="commands">
-    <h2>Commands</h2>
-    <div class="tabs">
-      <button class="active">All</button>
-      <button>Music</button>
-      <button>Profile</button>
-      <button>Info</button>
-    </div>
-    <div class="grid">
-      <div class="command-card">/play [song] – play a track</div>
-      <div class="command-card">/pause – pause</div>
-      <div class="command-card">/skip – skip</div>
-      <div class="command-card">/filter [name] – apply filter</div>
-    </div>
-  </section>
+<section id="commands" class="section">
+  <h2 class="neon-text">Commands</h2>
+  <div class="tabs">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="music">Music</button>
+    <button data-filter="profile">Profile</button>
+    <button data-filter="info">Info</button>
+  </div>
+  <div class="grid commands-list">
+    <!-- Music Commands -->
+    <div class="command-card" data-category="music"><code>/play</code> — Play a track or playlist</div>
+    <div class="command-card" data-category="music"><code>/skip</code> — Skip the current track</div>
+    <div class="command-card" data-category="music"><code>/stop</code> — Stop and clear the queue</div>
+    <div class="command-card" data-category="music"><code>/pause</code> — Pause</div>
+    <div class="command-card" data-category="music"><code>/resume</code> — Resume</div>
+    <div class="command-card" data-category="music"><code>/queue</code> — Queue with buttons</div>
+    <div class="command-card" data-category="music"><code>/shuffle</code> — Shuffle</div>
+    <div class="command-card" data-category="music"><code>/repeat</code> — Repeat</div>
+    <div class="command-card" data-category="music"><code>/clear</code> — Clear the queue</div>
+
+    <!-- Profile & Settings -->
+    <div class="command-card" data-category="profile"><code>/profile</code> — Music poster & stats</div>
+    <div class="command-card" data-category="profile"><code>/buypremium</code> — Buy/extend Premium</div>
+    <div class="command-card" data-category="profile"><code>/setdefaultgenre</code> — Favorite genre</div>
+    <div class="command-card" data-category="profile"><code>/setdefaultmood</code> — Default mood</div>
+
+    <!-- Info Commands -->
+    <div class="command-card" data-category="info"><code>/help</code> — Show this menu again</div>
+  </div>
+</section>
+
 
   <!-- FAQ -->
   <section id="faq">
