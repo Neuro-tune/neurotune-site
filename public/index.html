@@ -2,91 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neuro•Tune</title>
-  <link rel="stylesheet" href="styles/main.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neuro•Tune 🎶</title>
+  <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
+  <!-- Живой фон -->
+  <div class="music-bg"></div>
+
+  <!-- Прогресс-бар -->
+  <div id="progressBar"></div>
+
+  <!-- Навигация -->
   <nav>
-    <ul class="nav">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#commands">Commands</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
+    <div class="nav-container">
+      <div class="logo" data-target="home">Neuro•Tune 🎵</div>
+      <div class="nav-links">
+        <a href="#" data-target="home" class="nav-link">Home</a>
+        <a href="#" data-target="features" class="nav-link">Features</a>
+        <a href="#" data-target="commands" class="nav-link">Commands</a>
+        <a href="#" data-target="faq" class="nav-link">FAQ</a>
+      </div>
+    </div>
   </nav>
 
-  <section id="home" class="section gradient-bg">
-    <h1 class="neon-text">Welcome to Neuro•Tune 🎶</h1>
-    <p class="description">Your ultimate music companion for Discord</p>
+  <!-- Hero -->
+  <header id="home" class="section">
+    <h1>Neuro•Tune 🎵</h1>
+    <p>Smart, vibe-driven Discord music bot</p>
+    <div class="buttons">
+      <a href="#" class="btn" data-target="features">Learn More</a>
+      <a href="#" class="btn" data-target="commands">Try Demo</a>
+    </div>
+    <div id="waveform"></div>
+  </header>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <h2>Features</h2>
+    <div class="grid">
+      <div class="card">Spotify & YouTube playback</div>
+      <div class="card">Mood-based playlists</div>
+      <div class="card">Auto-DJ & filters</div>
+      <div class="card">User music profile</div>
+    </div>
   </section>
 
-  <section id="features" class="section dark-section">
-    <h2 class="neon-text">Features</h2>
-    <div class="card-neon">Supports Spotify, YouTube, SoundCloud, Deezer</div>
-    <div class="card-neon">Apply filters: bassboost, nightcore, 8D and more</div>
-    <div class="card-neon">Mood-based playlists & auto-DJ</div>
+  <!-- Commands -->
+  <section id="commands" class="section">
+    <h2>Commands</h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="music">Music</button>
+      <button class="tab-btn" data-filter="profile">Profile</button>
+      <button class="tab-btn" data-filter="info">Info</button>
+    </div>
+    <div class="commands-list">
+      <!-- Music -->
+      <div class="command-card" data-category="music"><code>/play</code> — Play a track or playlist</div>
+      <div class="command-card" data-category="music"><code>/skip</code> — Skip the current track</div>
+      <div class="command-card" data-category="music"><code>/stop</code> — Stop and clear the queue</div>
+      <div class="command-card" data-category="music"><code>/pause</code> — Pause</div>
+      <div class="command-card" data-category="music"><code>/resume</code> — Resume</div>
+      <div class="command-card" data-category="music"><code>/queue</code> — Queue with buttons</div>
+      <div class="command-card" data-category="music"><code>/shuffle</code> — Shuffle</div>
+      <div class="command-card" data-category="music"><code>/repeat</code> — Repeat</div>
+      <div class="command-card" data-category="music"><code>/clear</code> — Clear the queue</div>
+      <!-- Profile -->
+      <div class="command-card" data-category="profile"><code>/profile</code> — Music poster & stats</div>
+      <div class="command-card" data-category="profile"><code>/buypremium</code> — Buy/extend Premium</div>
+      <div class="command-card" data-category="profile"><code>/setdefaultgenre</code> — Favorite genre</div>
+      <div class="command-card" data-category="profile"><code>/setdefaultmood</code> — Default mood</div>
+      <!-- Info -->
+      <div class="command-card" data-category="info"><code>/help</code> — Show this menu again</div>
+    </div>
   </section>
 
-  <section id="commands" class="section dark-section">
-  <h2 class="section-title neon-text">Commands</h2>
-  <div class="tabs">
-    <button class="active" data-filter="all">All</button>
-    <button data-filter="music">Music</button>
-    <button data-filter="profile">Profile</button>
-    <button data-filter="info">Info</button>
-  </div>
-  <div class="commands-list">
-    <!-- Music Commands -->
-    <div class="command-card" data-category="music"><code>/play</code> — Play a track or playlist</div>
-    <div class="command-card" data-category="music"><code>/skip</code> — Skip the current track</div>
-    <div class="command-card" data-category="music"><code>/stop</code> — Stop and clear the queue</div>
-    <div class="command-card" data-category="music"><code>/pause</code> — Pause playback</div>
-    <div class="command-card" data-category="music"><code>/resume</code> — Resume playback</div>
-    <div class="command-card" data-category="music"><code>/queue</code> — Queue with buttons</div>
-    <div class="command-card" data-category="music"><code>/shuffle</code> — Shuffle queue</div>
-    <div class="command-card" data-category="music"><code>/repeat</code> — Repeat mode</div>
-    <div class="command-card" data-category="music"><code>/clear</code> — Clear the queue</div>
-    <div class="command-card" data-category="music"><code>/remove</code> — Remove a track by number</div>
-    <div class="command-card" data-category="music"><code>/move</code> — Move a track in the queue</div>
-    <div class="command-card" data-category="music"><code>/playlist add</code> — Add a track to your playlist</div>
-    <div class="command-card" data-category="music"><code>/playlist remove</code> — Remove a track from your playlist</div>
-    <div class="command-card" data-category="music"><code>/playlist rename</code> — Rename your playlist</div>
-    <div class="command-card" data-category="music"><code>/playlist list</code> — Show your playlists</div>
-    <div class="command-card" data-category="music"><code>/autodj</code> — Auto‑DJ: endless music</div>
-    <div class="command-card" data-category="music"><code>/mood</code> — Generate music by mood</div>
-
-    <!-- Profile & Settings Commands -->
-    <div class="command-card" data-category="profile"><code>/profile</code> — View your music stats</div>
-    <div class="command-card" data-category="profile"><code>/buypremium</code> — Buy/extend Premium</div>
-    <div class="command-card" data-category="profile"><code>/setdefaultgenre</code> — Set favorite genre</div>
-    <div class="command-card" data-category="profile"><code>/setdefaultmood</code> — Set default mood</div>
-
-    <!-- Info Commands -->
-    <div class="command-card" data-category="info"><code>/help</code> — Show this menu again</div>
-  </div>
-</section>
-
-  <section id="faq" class="section dark-section">
-    <h2 class="neon-text">FAQ</h2>
-    <details class="faq-item">
-      <summary>How do I invite Neuro•Tune?</summary>
-      <p>Click the "Invite" button in the nav or use /invite.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Which platforms are supported?</summary>
-      <p>Spotify, YouTube, SoundCloud, Deezer, Apple Music and more.</p>
-    </details>
-    <details class="faq-item">
-      <summary>How can I apply filters?</summary>
-      <p>Use /filter &lt;name&gt; — e.g. bassboost, nightcore, 8D.</p>
-    </details>
-    <details class="faq-item">
-      <summary>When will Premium release?</summary>
-      <p>Coming soon — stay tuned in our Discord!</p>
-    </details>
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <h2>FAQ</h2>
+    <details><summary>How do I invite Neuro•Tune?</summary><p>Click the "Invite" button in the nav or use /invite.</p></details>
+    <details><summary>Which platforms are supported?</summary><p>Spotify, YouTube, SoundCloud, Deezer, Apple Music and more.</p></details>
+    <details><summary>How can I apply filters?</summary><p>Use <code>/filter &lt;name&gt;</code> — e.g. bassboost, nightcore, 8D.</p></details>
+    <details><summary>When will Premium release?</summary><p>Coming soon — stay tuned!</p></details>
   </section>
 
-  <script src="scripts/main.js"></script>
+  <!-- Скрипты -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/wavesurfer.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
