@@ -32,32 +32,41 @@ window.addEventListener('scroll',()=>{
 });
 
 // 3) Wavesurfer
-const wavesurfer=WaveSurfer.create({container:'#waveform',waveColor:'rgba(255,255,255,0.2)',
-progressColor:'var(--neon)',height:120,barWidth:2,responsive:true});
+const wavesurfer=WaveSurfer.create({
+  container:'#waveform',
+  waveColor:'rgba(255,255,255,0.2)',
+  progressColor:'cyan',
+  height:80,
+  barWidth:2,
+  responsive:true
+});
 wavesurfer.load('/sample.mp3');
 
-// 4) Smooth scroll
-function scrollToSection(id){
-  const el=document.getElementById(id);
-  if(el)el.scrollIntoView({behavior:'smooth'});
+// 4) Smooth scroll & section toggle
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => {
+    sec.style.display = sec.id === id ? 'block' : 'none';
+  });
 }
-document.querySelectorAll('nav a, .logo').forEach(link=>{
-  link.addEventListener('click',e=>{
-    const h=link.getAttribute('href');
-    if(h&&h.startsWith('#')){e.preventDefault();scrollToSection(h.substring(1));}
+document.querySelectorAll('.nav-link, .buttons a, .logo').forEach(el=>{
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    const target = el.dataset.target;
+    if (target) showSection(target);
   });
 });
 
-// 5) Tabs (All/Music/Profile/Info)
-const tabs=document.querySelectorAll('.tabs button');
-const cards=document.querySelectorAll('.command-card');
-tabs.forEach(t=>{
-  t.addEventListener('click',()=>{
-    tabs.forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    const f=t.textContent.toLowerCase();
-    cards.forEach(c=>{
-      c.style.display = (f==='all' || c.textContent.toLowerCase().includes(f)) ? 'block':'none';
-    });
+// 5) Tabs Commands filter
+const tabs = document.querySelectorAll('.tab-btn');
+const cards = document.querySelectorAll('.command-card');
+tabs.forEach(tab => tab.addEventListener('click', () => {
+  tabs.forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const filter = tab.dataset.filter;
+  cards.forEach(c => {
+    c.style.display = (filter === 'all' || c.dataset.category === filter) ? 'inline-block' : 'none';
   });
-});
+}));
+
+// init: show only home
+showSection('home');
