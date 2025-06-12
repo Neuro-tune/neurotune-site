@@ -197,3 +197,56 @@ details p {
 #waveform {
   margin-top: 2em;
 }
+/* Группы команд */
+.cmd-group {
+  margin-bottom: 2rem;
+}
+
+/* Заголовки групп */
+.group-title {
+  font-size: 1.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+  margin-bottom: 1rem;
+}
+
+/* Список команд */
+.cmd-list {
+  list-style: none;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.cmd-list li {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.cmd-list li:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+/* Иконка перед командой */
+.cmd-icon {
+  display: inline-block;
+  margin-right: 0.75rem;
+  font-size: 1.25rem;
+}
+
+/* Команда-код */
+.cmd-list code {
+  font-family: 'Courier New', Courier, monospace;
+  background: rgba(0,255,255,0.2);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: #000;
+  margin-right: 0.5rem;
+}
