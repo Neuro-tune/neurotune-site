@@ -2,21 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neuro•Tune</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-  <!-- Живой фон -->
-  <div class="music-bg"></div>
-
-  <!-- Прогресс-бар -->
-  <div id="progressBar"></div>
-
-  <!-- Навигация -->
   <nav>
-    <div class="logo" href="#home">Neuro•Tune 🎵</div>
-    <ul>
+    <ul class="nav">
       <li><a href="#home">Home</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#commands">Commands</a></li>
@@ -24,104 +16,77 @@
     </ul>
   </nav>
 
-  <!-- Главный блок -->
-  <header id="home">
-    <h1>Neuro•Tune 🎵</h1>
-    <p>Smart, vibe-driven Discord music bot</p>
-    <div class="buttons">
-      <a href="#">Learn More</a>
-      <a href="#">Try Demo</a>
-    </div>
-    <div id="waveform"></div>
-  </header>
-
-  <!-- Features -->
-  <section id="features">
-    <h2>Features</h2>
-    <div class="grid">
-      <div class="card">Spotify & YouTube playback</div>
-      <div class="card">Mood-based playlists</div>
-      <div class="card">Auto-DJ & filters</div>
-      <div class="card">User music profile</div>
-    </div>
+  <section id="home" class="section gradient-bg">
+    <h1 class="neon-text">Welcome to Neuro•Tune 🎶</h1>
+    <p class="description">Your ultimate music companion for Discord</p>
   </section>
 
-  <!-- Commands -->
+  <section id="features" class="section dark-section">
+    <h2 class="neon-text">Features</h2>
+    <div class="card-neon">Supports Spotify, YouTube, SoundCloud, Deezer</div>
+    <div class="card-neon">Apply filters: bassboost, nightcore, 8D and more</div>
+    <div class="card-neon">Mood-based playlists & auto-DJ</div>
+  </section>
+
   <section id="commands" class="section dark-section">
-  <h2 class="section-title">Commands</h2>
-
-  <div class="cmd-group">
-    <h3 class="group-title">🎵 Main Commands</h3>
-    <ul class="cmd-list">
-      <li><span class="cmd-icon">📀</span> <code>/play</code> — Play a track or playlist</li>
-      <li><span class="cmd-icon">⏭️</span> <code>/skip</code> — Skip the current track</li>
-      <li><span class="cmd-icon">⏹️</span> <code>/stop</code> — Stop and clear the queue</li>
-      <li><span class="cmd-icon">⏸️</span> <code>/pause</code> — Pause playback</li>
-      <li><span class="cmd-icon">▶️</span> <code>/resume</code> — Resume playback</li>
-      <li><span class="cmd-icon">📄</span> <code>/queue</code> — Show queue with buttons</li>
-      <li><span class="cmd-icon">🔀</span> <code>/shuffle</code> — Shuffle queue</li>
-      <li><span class="cmd-icon">🔁</span> <code>/repeat</code> — Repeat mode</li>
-      <li><span class="cmd-icon">🧹</span> <code>/clear</code> — Clear the queue</li>
-    </ul>
+  <h2 class="section-title neon-text">Commands</h2>
+  <div class="tabs">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="music">Music</button>
+    <button data-filter="profile">Profile</button>
+    <button data-filter="info">Info</button>
   </div>
+  <div class="commands-list">
+    <!-- Music Commands -->
+    <div class="command-card" data-category="music"><code>/play</code> — Play a track or playlist</div>
+    <div class="command-card" data-category="music"><code>/skip</code> — Skip the current track</div>
+    <div class="command-card" data-category="music"><code>/stop</code> — Stop and clear the queue</div>
+    <div class="command-card" data-category="music"><code>/pause</code> — Pause playback</div>
+    <div class="command-card" data-category="music"><code>/resume</code> — Resume playback</div>
+    <div class="command-card" data-category="music"><code>/queue</code> — Queue with buttons</div>
+    <div class="command-card" data-category="music"><code>/shuffle</code> — Shuffle queue</div>
+    <div class="command-card" data-category="music"><code>/repeat</code> — Repeat mode</div>
+    <div class="command-card" data-category="music"><code>/clear</code> — Clear the queue</div>
+    <div class="command-card" data-category="music"><code>/remove</code> — Remove a track by number</div>
+    <div class="command-card" data-category="music"><code>/move</code> — Move a track in the queue</div>
+    <div class="command-card" data-category="music"><code>/playlist add</code> — Add a track to your playlist</div>
+    <div class="command-card" data-category="music"><code>/playlist remove</code> — Remove a track from your playlist</div>
+    <div class="command-card" data-category="music"><code>/playlist rename</code> — Rename your playlist</div>
+    <div class="command-card" data-category="music"><code>/playlist list</code> — Show your playlists</div>
+    <div class="command-card" data-category="music"><code>/autodj</code> — Auto‑DJ: endless music</div>
+    <div class="command-card" data-category="music"><code>/mood</code> — Generate music by mood</div>
 
-  <div class="cmd-group">
-    <h3 class="group-title">🎛️ Track Management</h3>
-    <ul class="cmd-list">
-      <li><span class="cmd-icon">❌</span> <code>/remove</code> — Remove a track by number</li>
-      <li><span class="cmd-icon">🔃</span> <code>/move</code> — Move a track in the queue</li>
-    </ul>
-  </div>
+    <!-- Profile & Settings Commands -->
+    <div class="command-card" data-category="profile"><code>/profile</code> — View your music stats</div>
+    <div class="command-card" data-category="profile"><code>/buypremium</code> — Buy/extend Premium</div>
+    <div class="command-card" data-category="profile"><code>/setdefaultgenre</code> — Set favorite genre</div>
+    <div class="command-card" data-category="profile"><code>/setdefaultmood</code> — Set default mood</div>
 
-  <div class="cmd-group">
-    <h3 class="group-title">📂 Playlists</h3>
-    <ul class="cmd-list">
-      <li><span class="cmd-icon">➕</span> <code>/playlist add</code> — Add track to your playlist</li>
-      <li><span class="cmd-icon">➖</span> <code>/playlist remove</code> — Remove track from your playlist</li>
-      <li><span class="cmd-icon">✏️</span> <code>/playlist rename</code> — Rename your playlist</li>
-      <li><span class="cmd-icon">📋</span> <code>/playlist list</code> — Show your playlists</li>
-    </ul>
-  </div>
-
-  <div class="cmd-group">
-    <h3 class="group-title">🤖 Smart Features</h3>
-    <ul class="cmd-list">
-      <li><span class="cmd-icon">🎚️</span> <code>/autodj</code> — Auto‑DJ: endless music</li>
-      <li><span class="cmd-icon">🎭</span> <code>/mood</code> — Generate music by mood</li>
-    </ul>
-  </div>
-
-  <div class="cmd-group">
-    <h3 class="group-title">👤 Profile & Settings</h3>
-    <ul class="cmd-list">
-      <li><span class="cmd-icon">🧾</span> <code>/profile</code> — View music stats</li>
-      <li><span class="cmd-icon">💎</span> <code>/buypremium</code> — Buy/extend Premium</li>
-      <li><span class="cmd-icon">🎼</span> <code>/setdefaultgenre</code> — Set favorite genre</li>
-      <li><span class="cmd-icon">🎭</span> <code>/setdefaultmood</code> — Set default mood</li>
-    </ul>
-  </div>
-
-  <div class="cmd-group">
-    <h3 class="group-title">ℹ️ More</h3>
-    <ul class="cmd-list">
-      <li><span class="cmd-icon">📚</span> <code>/help</code> — Show this menu again</li>
-    </ul>
+    <!-- Info Commands -->
+    <div class="command-card" data-category="info"><code>/help</code> — Show this menu again</div>
   </div>
 </section>
 
-  <!-- FAQ -->
-  <section id="faq">
-    <h2>FAQ</h2>
-    <details><summary>How do I invite Neuro•Tune?</summary><p>Click the "Invite" button in the nav or use /invite.</p></details>
-    <details><summary>Which platforms are supported?</summary><p>Supports Spotify, YouTube, SoundCloud, Deezer, Apple Music, and more.</p></details>
-    <details><summary>How can I apply filters?</summary><p>Use /filter &lt;name&gt; with names like bassboost, nightcore, 8D.</p></details>
-    <details><summary>When will Premium release?</summary><p>Soon! Stay tuned for updates on our Discord.</p></details>
+  <section id="faq" class="section dark-section">
+    <h2 class="neon-text">FAQ</h2>
+    <details class="faq-item">
+      <summary>How do I invite Neuro•Tune?</summary>
+      <p>Click the "Invite" button in the nav or use /invite.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Which platforms are supported?</summary>
+      <p>Spotify, YouTube, SoundCloud, Deezer, Apple Music and more.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How can I apply filters?</summary>
+      <p>Use /filter &lt;name&gt; — e.g. bassboost, nightcore, 8D.</p>
+    </details>
+    <details class="faq-item">
+      <summary>When will Premium release?</summary>
+      <p>Coming soon — stay tuned in our Discord!</p>
+    </details>
   </section>
 
-  <!-- Скрипты -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/wavesurfer.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
