@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Neuro•Tune 🎶</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neuro•Tune</title>
   <link rel="stylesheet" href="styles/main.css"/>
 </head>
 <body>
-  <!-- Animated Neon Background -->
+  <!-- Живой фон -->
   <div class="music-bg"></div>
 
-  <!-- Progress Bar -->
+  <!-- Прогресс-бар -->
   <div id="progressBar"></div>
 
-  <!-- Navigation -->
+  <!-- Навигация -->
   <nav>
     <div class="nav-container">
       <div class="logo nav-link" data-target="home">Neuro•Tune 🎵</div>
-      <div class="nav-links">
-        <a href="#" class="nav-link" data-target="home">Home</a>
-        <a href="#" class="nav-link" data-target="features">Features</a>
-        <a href="#" class="nav-link" data-target="commands">Commands</a>
-        <a href="#" class="nav-link" data-target="faq">FAQ</a>
-      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+        <li><a href="#" class="nav-link" data-target="features">Features</a></li>
+        <li><a href="#" class="nav-link" data-target="commands">Commands</a></li>
+        <li><a href="#" class="nav-link" data-target="faq">FAQ</a></li>
+      </ul>
     </div>
   </nav>
 
@@ -31,8 +31,8 @@
     <h1>Neuro•Tune 🎵</h1>
     <p>Smart, vibe-driven Discord music bot</p>
     <div class="buttons">
-      <a href="#" class="btn" data-target="features">Learn More</a>
-      <a href="#" class="btn" data-target="commands">Try Demo</a>
+      <a href="#" class="btn nav-link" data-target="features">Learn More</a>
+      <a href="#" class="btn nav-link" data-target="commands">Try Demo</a>
     </div>
     <div id="waveform"></div>
   </header>
@@ -42,8 +42,8 @@
     <h2>Features</h2>
     <div class="grid">
       <div class="card">Spotify & YouTube playback</div>
-      <div class="card">Mood‑based playlists</div>
-      <div class="card">Auto‑DJ & filters</div>
+      <div class="card">Mood-based playlists</div>
+      <div class="card">Auto-DJ & filters</div>
       <div class="card">User music profile</div>
     </div>
   </section>
@@ -57,7 +57,7 @@
       <button class="tab-btn" data-filter="profile">Profile</button>
       <button class="tab-btn" data-filter="info">Info</button>
     </div>
-    <div class="commands-list grid">
+    <div class="grid commands-list">
       <!-- Music Commands -->
       <div class="command-card" data-category="music"><code>/play</code> — Play a track or playlist</div>
       <div class="command-card" data-category="music"><code>/skip</code> — Skip the current track</div>
