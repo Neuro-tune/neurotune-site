@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Neuro•Tune 🎶</title>
-  <link rel="stylesheet" href="styles/main.css"/>
+  <title>Neuro•Tune</title>
+  <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
   <!-- Живой фон -->
@@ -15,30 +15,28 @@
 
   <!-- Навигация -->
   <nav>
-    <div class="nav-container">
-      <div class="logo" data-target="home">Neuro•Tune 🎵</div>
-      <div class="nav-links">
-        <a href="#" data-target="home" class="nav-link">Home</a>
-        <a href="#" data-target="features" class="nav-link">Features</a>
-        <a href="#" data-target="commands" class="nav-link">Commands</a>
-        <a href="#" data-target="faq" class="nav-link">FAQ</a>
-      </div>
-    </div>
+    <div class="logo" href="#home">Neuro•Tune 🎵</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
   </nav>
 
-  <!-- Hero -->
-  <header id="home" class="section">
+  <!-- Главный блок -->
+  <header id="home">
     <h1>Neuro•Tune 🎵</h1>
     <p>Smart, vibe-driven Discord music bot</p>
     <div class="buttons">
-      <a href="#" class="btn" data-target="features">Learn More</a>
-      <a href="#" class="btn" data-target="commands">Try Demo</a>
+      <a href="#">Learn More</a>
+      <a href="#">Try Demo</a>
     </div>
     <div id="waveform"></div>
   </header>
 
   <!-- Features -->
-  <section id="features" class="section">
+  <section id="features">
     <h2>Features</h2>
     <div class="grid">
       <div class="card">Spotify & YouTube playback</div>
@@ -49,48 +47,35 @@
   </section>
 
   <!-- Commands -->
-  <section id="commands" class="section">
+  <section id="commands">
     <h2>Commands</h2>
     <div class="tabs">
-      <button class="tab-btn active" data-filter="all">All</button>
-      <button class="tab-btn" data-filter="music">Music</button>
-      <button class="tab-btn" data-filter="profile">Profile</button>
-      <button class="tab-btn" data-filter="info">Info</button>
+      <button class="active">All</button>
+      <button>Music</button>
+      <button>Profile</button>
+      <button>Info</button>
     </div>
-    <div class="commands-list">
-      <!-- Music -->
-      <div class="command-card" data-category="music"><code>/play</code> — Play a track or playlist</div>
-      <div class="command-card" data-category="music"><code>/skip</code> — Skip the current track</div>
-      <div class="command-card" data-category="music"><code>/stop</code> — Stop and clear the queue</div>
-      <div class="command-card" data-category="music"><code>/pause</code> — Pause</div>
-      <div class="command-card" data-category="music"><code>/resume</code> — Resume</div>
-      <div class="command-card" data-category="music"><code>/queue</code> — Queue with buttons</div>
-      <div class="command-card" data-category="music"><code>/shuffle</code> — Shuffle</div>
-      <div class="command-card" data-category="music"><code>/repeat</code> — Repeat</div>
-      <div class="command-card" data-category="music"><code>/clear</code> — Clear the queue</div>
-      <!-- Profile -->
-      <div class="command-card" data-category="profile"><code>/profile</code> — Music poster & stats</div>
-      <div class="command-card" data-category="profile"><code>/buypremium</code> — Buy/extend Premium</div>
-      <div class="command-card" data-category="profile"><code>/setdefaultgenre</code> — Favorite genre</div>
-      <div class="command-card" data-category="profile"><code>/setdefaultmood</code> — Default mood</div>
-      <!-- Info -->
-      <div class="command-card" data-category="info"><code>/help</code> — Show this menu again</div>
+    <div class="grid">
+      <div class="command-card">/play [song] – play a track</div>
+      <div class="command-card">/pause – pause</div>
+      <div class="command-card">/skip – skip</div>
+      <div class="command-card">/filter [name] – apply filter</div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="section">
+  <section id="faq">
     <h2>FAQ</h2>
     <details><summary>How do I invite Neuro•Tune?</summary><p>Click the "Invite" button in the nav or use /invite.</p></details>
-    <details><summary>Which platforms are supported?</summary><p>Spotify, YouTube, SoundCloud, Deezer, Apple Music and more.</p></details>
-    <details><summary>How can I apply filters?</summary><p>Use <code>/filter &lt;name&gt;</code> — e.g. bassboost, nightcore, 8D.</p></details>
-    <details><summary>When will Premium release?</summary><p>Coming soon — stay tuned!</p></details>
+    <details><summary>Which platforms are supported?</summary><p>Supports Spotify, YouTube, SoundCloud, Deezer, Apple Music, and more.</p></details>
+    <details><summary>How can I apply filters?</summary><p>Use /filter &lt;name&gt; with names like bassboost, nightcore, 8D.</p></details>
+    <details><summary>When will Premium release?</summary><p>Soon! Stay tuned for updates on our Discord.</p></details>
   </section>
 
   <!-- Скрипты -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/wavesurfer.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
