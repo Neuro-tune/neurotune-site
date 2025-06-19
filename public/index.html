@@ -1,82 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Neuro•Tune 🎶</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="icon" href="public/favicon.ico" />
 </head>
 <body>
-  <!-- Live neon background -->
-  <div class="bg-wrapper">
-    <div class="bg-gradient"></div>
-    <div class="bg-notes"></div>
-  </div>
+  <!-- Soft gradient background + subtle moving notes -->
+  <div class="bg-gradient"></div>
+  <div class="bg-notes"></div>
 
   <!-- Navigation -->
   <nav class="nav">
-    <div class="nav__logo">Neuro•Tune 🎵</div>
+    <div class="nav__logo"><a href="#home">Neuro•Tune 🎵</a></div>
     <ul class="nav__links">
       <li><a href="#home" class="active">Home</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#commands">Commands</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
+    <div class="nav__burger">☰</div>
   </nav>
 
-  <!-- Sections -->
   <main>
+    <!-- Hero Section -->
     <section id="home" class="panel">
-      <div class="panel__content">
-        <h1>Neuro•Tune 🎶</h1>
-        <p>Your smart, vibe-driven Discord music bot</p>
+      <div class="panel__inner">
+        <h1>Neuro•Tune 🎵</h1>
+        <p>Smart, vibe-driven Discord music bot</p>
         <a href="#features" class="btn">Discover Features</a>
       </div>
       <div id="waveform"></div>
     </section>
 
+    <!-- Features Section -->
     <section id="features" class="panel">
-      <h2>Features</h2>
-      <div class="features-grid">
-        <div class="feature-card">🎧 Spotify & YouTube playback</div>
-        <div class="feature-card">🎼 Mood-based playlists</div>
-        <div class="feature-card">🤖 Auto-DJ & filters</div>
-        <div class="feature-card">📊 Personalized stats</div>
+      <div class="panel__inner">
+        <h2>Features ✨</h2>
+        <div class="cards features">
+          <div class="card">🎧 Spotify & YouTube playback</div>
+          <div class="card">🎼 Mood‑based playlists</div>
+          <div class="card">🤖 Auto‑DJ & filters</div>
+          <div class="card">📊 Personalized stats</div>
+        </div>
       </div>
     </section>
 
+    <!-- Commands Section -->
     <section id="commands" class="panel">
-      <h2>Commands</h2>
-      <div class="commands-grid">
-        <div class="cmd-card"><code>/play</code><span>▶ Play a track or playlist</span></div>
-        <div class="cmd-card"><code>/skip</code><span>⏭ Skip the current track</span></div>
-        <div class="cmd-card"><code>/stop</code><span>⏹ Stop & clear queue</span></div>
-        <div class="cmd-card"><code>/pause</code><span>⏸ Pause playback</span></div>
-        <div class="cmd-card"><code>/resume</code><span>▶ Resume playback</span></div>
-        <div class="cmd-card"><code>/queue</code><span>📄 Show queue</span></div>
-        <div class="cmd-card"><code>/shuffle</code><span>🔀 Shuffle queue</span></div>
-        <div class="cmd-card"><code>/repeat</code><span>🔁 Repeat mode</span></div>
-        <div class="cmd-card"><code>/clear</code><span>🧹 Clear queue</span></div>
-        <div class="cmd-card"><code>/profile</code><span>👤 View stats</span></div>
-        <div class="cmd-card"><code>/buypremium</code><span>💎 Buy Premium</span></div>
-        <div class="cmd-card"><code>/help</code><span>📚 Help menu</span></div>
+      <div class="panel__inner">
+        <h2>Commands 🎛</h2>
+        <div class="cards commands">
+          <div class="cmd-card"><code>/play</code><span>▶ Play a track or playlist</span></div>
+          <div class="cmd-card"><code>/skip</code><span>⏭ Skip current track</span></div>
+          <div class="cmd-card"><code>/stop</code><span>⏹ Stop & clear queue</span></div>
+          <div class="cmd-card"><code>/pause</code><span>⏸ Pause playback</span></div>
+          <div class="cmd-card"><code>/resume</code><span>▶ Resume playback</span></div>
+          <div class="cmd-card"><code>/queue</code><span>📄 Show queue</span></div>
+          <div class="cmd-card"><code>/shuffle</code><span>🔀 Shuffle queue</span></div>
+          <div class="cmd-card"><code>/repeat</code><span>🔁 Repeat mode</span></div>
+          <div class="cmd-card"><code>/clear</code><span>🧹 Clear queue</span></div>
+          <div class="cmd-card"><code>/profile</code><span>👤 View stats</span></div>
+          <div class="cmd-card"><code>/buypremium</code><span>💎 Buy Premium</span></div>
+          <div class="cmd-card"><code>/help</code><span>📚 Help menu</span></div>
+        </div>
       </div>
     </section>
 
+    <!-- FAQ Section -->
     <section id="faq" class="panel">
-      <h2>FAQ</h2>
-      <details><summary>How invite?</summary><p>Use the Invite button.</p></details>
-      <details><summary>Supported platforms?</summary><p>Spotify, YouTube, SoundCloud...</p></details>
-      <details><summary>Filters?</summary><p>Use <code>/filter &lt;name&gt;</code>.</p></details>
-      <details><summary>Premium release?</summary><p>Soon!</p></details>
+      <div class="panel__inner">
+        <h2>FAQ ❓</h2>
+        <details><summary>How do I invite Neuro•Tune?</summary><p>Use the Invite button or <code>/invite</code>.</p></details>
+        <details><summary>Supported platforms?</summary><p>Spotify, YouTube, SoundCloud, Deezer...</p></details>
+        <details><summary>How to apply filters?</summary><p>Use <code>/filter &lt;name&gt;</code>.</p></details>
+        <details><summary>When is Premium?</summary><p>Coming soon—stay tuned!</p></details>
+      </div>
     </section>
   </main>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/wavesurfer.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 </html>
