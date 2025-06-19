@@ -1,113 +1,67 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neuro•Tune 🎶</title>
-  <link rel="stylesheet" href="styles/main.css"/>
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <!-- Live neon background -->
   <div class="music-bg"></div>
 
   <!-- Navigation -->
   <nav>
     <div class="logo"><a href="#home">Neuro•Tune 🎵</a></div>
     <ul class="nav-links">
-      <li><a href="#home">🏠 Home</a></li>
-      <li><a href="#features">✨ Features</a></li>
-      <li><a href="#commands">🎛 Commands</a></li>
-      <li><a href="#faq">❓ FAQ</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
-    <div class="burger">&#9776;</div>
+    <div class="burger">☰</div>
   </nav>
 
   <main>
-    <!-- Home Section -->
     <section id="home" class="section">
-      <h1>Welcome to Neuro•Tune 🎵</h1>
-      <p>Your smart, vibe‑driven Discord music bot</p>
-      <div class="buttons">
-        <a href="#features" class="btn">Learn More</a>
-        <a href="#commands" class="btn">Try Demo</a>
+      <div class="content">
+        <h1>Neuro•Tune 🎵</h1>
+        <p>Smart, vibe‑driven Discord music bot</p>
+        <a href="#features" class="btn">Get Started</a>
       </div>
-      <div id="waveform"></div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="section">
       <h2>Features ✨</h2>
-      <div class="grid">
-        <div class="card">🎧 Spotify & YouTube playback</div>
-        <div class="card">🎼 Mood‑based playlists</div>
-        <div class="card">🤖 Auto‑DJ & filters</div>
-        <div class="card">📊 User music profile</div>
+      <div class="cards">
+        <div class="card">🎧 Spotify & YouTube</div>
+        <div class="card">🎼 Mood‑based</div>
+        <div class="card">🤖 Auto‑DJ</div>
+        <div class="card">📊 Stats & Profile</div>
       </div>
     </section>
 
-    <!-- Commands Section -->
     <section id="commands" class="section">
       <h2>Commands 🎛</h2>
-      <div class="commands-grid">
-        <div class="cmd-box">
-          <h3>/play</h3><p>▶️ Play a track or playlist</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/skip</h3><p>⏭️ Skip the current track</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/stop</h3><p>⏹️ Stop and clear the queue</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/pause</h3><p>⏸️ Pause playback</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/resume</h3><p>▶️ Resume playback</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/queue</h3><p>📄 Show queue with buttons</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/shuffle</h3><p>🔀 Shuffle queue</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/repeat</h3><p>🔁 Repeat mode</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/clear</h3><p>🧹 Clear the queue</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/profile</h3><p>👤 View music stats & poster</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/buypremium</h3><p>💎 Buy/extend Premium</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/setdefaultgenre</h3><p>🎼 Favorite genre</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/setdefaultmood</h3><p>🎭 Default mood</p>
-        </div>
-        <div class="cmd-box">
-          <h3>/help</h3><p>📚 Show this menu again</p>
-        </div>
+      <div class="cards commands">
+        <div class="card"><code>/play</code> Play a track</div>
+        <div class="card"><code>/skip</code> Skip current</div>
+        <div class="card"><code>/pause</code> Pause</div>
+        <div class="card"><code>/resume</code> Resume</div>
+        <div class="card"><code>/queue</code> View queue</div>
+        <div class="card"><code>/shuffle</code> Shuffle</div>
+        <div class="card"><code>/profile</code> Show stats</div>
+        <div class="card"><code>/help</code> Help menu</div>
       </div>
     </section>
 
-    <!-- FAQ Section -->
     <section id="faq" class="section">
       <h2>FAQ ❓</h2>
-      <details><summary>How do I invite Neuro•Tune?</summary><p>Click “Invite” or use <code>/invite</code>.</p></details>
-      <details><summary>Which platforms are supported?</summary><p>Spotify, YouTube, SoundCloud, Deezer, Apple Music...</p></details>
-      <details><summary>How can I apply filters?</summary><p>Use <code>/filter &lt;name&gt;</code> (bassboost, nightcore, 8D).</p></details>
-      <details><summary>When will Premium release?</summary><p>Coming soon—stay tuned!</p></details>
+      <details><summary>How to invite?</summary><p>Click the invite button.</p></details>
+      <details><summary>Supported platforms?</summary><p>Spotify, YouTube, etc.</p></details>
     </section>
   </main>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/wavesurfer.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 </html>
