@@ -1,33 +1,39 @@
-// GSAP + ScrollSnap fade
-if(gsap && ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-const panels = document.querySelectorAll('.section');
-panels.forEach(sec => {
-  ScrollTrigger.create({
-    trigger: sec,
-    start: 'top top', end: 'bottom top',
-    onEnter:    () => gsap.to(sec, {autoAlpha:1, y:0, duration:0.7}),
-    onLeave:    () => gsap.to(sec, {autoAlpha:0, y:-50, duration:0.5}),
-    onEnterBack:() => gsap.to(sec, {autoAlpha:1, y:0, duration:0.7}),
-    onLeaveBack:() => gsap.to(sec, {autoAlpha:0, y:50, duration:0.5})
+// Intersection Observer для плавного fade-in/out секций
+const panels = document.querySelectorAll('.panel');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+    else e.target.classList.remove('visible');
+  });
+}, { threshold: 0.5 });
+
+panels.forEach(p => io.observe(p));
+
+// Плавный скролл по якорям
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))
+      .scrollIntoView({behavior: 'smooth'});
+    // Активная ссылка
+    document.querySelectorAll('.nav__links a')
+      .forEach(link => link.classList.remove('active'));
+    a.classList.add('active');
   });
 });
 
-// Progress bar
-document.addEventListener('scroll', () => {
-  const s=window.scrollY, d=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('progressBar').style.width = (s/d*100)+'%';
-});
-
-// WaveSurfer
-const wavesurfer = WaveSurfer.create({container:'#waveform',waveColor:'rgba(255,255,255,0.2)',progressColor:'#0ff',height:80,barWidth:2});
-wavesurfer.load('assets/sample.mp3');
-
-// Burger
-const burger = document.querySelector('.burger');
+// Бургер-меню для мобилок
+const burger = document.querySelector('.nav__burger');
 const navLinks = document.querySelector('.nav__links');
 burger?.addEventListener('click', () => navLinks.classList.toggle('show'));
 
-// Smooth links
-document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-  e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-}));
+// Простая волна-заглушка (или WaveSurfer)
+if (window.WaveSurfer) {
+  const wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'rgba(255,255,255,0.2)',
+    progressColor: '#4ca1af',
+    height: 80, barWidth: 2, responsive: true
+  });
+  wavesurfer.load('/assets/sample.mp3');
+}
