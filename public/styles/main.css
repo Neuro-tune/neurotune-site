@@ -1,47 +1,166 @@
-/* Base & Scroll Snap */
-html, body {height:100%;margin:0;overflow:hidden;}
-main   {height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;}
-.panel {scroll-snap-align:start;height:100vh;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:2rem;box-sizing:border-box;}
+/* --- Базовая обвязка и Scroll Snap --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+main {
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+.panel {
+  position: relative;
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
 
-/* Background */
-.bg-wrapper, .music-bg {position:fixed;top:0;left:0;width:100%;height:100%;}
-.bg-gradient {background:linear-gradient(135deg,#8e2de2,#4a00e0);filter:blur(100px);opacity:0.3;height:100%;width:100%;}
-.bg-notes {background:url('../assets/note-pattern.png') repeat;opacity:0.06;animation:move 60s linear infinite;height:100%;width:100%;}
-@keyframes move{from{background-position:0 0}to{background-position:-500px -500px}}
+  /* Начальное состояние — скрыто */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* Nav */
-.nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;backdrop-filter:blur(10px);background:rgba(0,0,0,0.4);z-index:10;}
-.nav .logo{color:#0ff;font-size:1.5rem;font-weight:700;text-decoration:none;}
-.nav__links{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;}
-.nav__links a{color:#fff;text-decoration:none;font-weight:500;transition:color .3s;}
-.nav__links a:hover{color:#0ff;}
-.burger{display:none;font-size:1.8rem;color:#0ff;cursor:pointer;}
-@media(max-width:768px){.nav__links{display:none;flex-direction:column;background:rgba(0,0,0,0.9);position:absolute;top:100%;right:2rem;padding:1rem;border-radius:8px;} .nav__links.show{display:flex;} .burger{display:block;}}
+/* --- Мягкий градиентный фон --- */
+.bg-gradient {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  z-index: -2;
+}
 
-/* Hero */
-#home .panel__content {text-align:center;color:#fff;}
-#home h1{font-size:3rem;text-shadow:0 0 10px #0ff;margin-bottom:1rem;}
-#home p{font-size:1.2rem;margin-bottom:2rem;color:#ddd;}
-.btn{display:inline-block;padding:.8rem 1.6rem;border:2px solid #0ff;color:#0ff;border-radius:999px;text-decoration:none;transition:all .3s;}
-.btn:hover{background:#0ff;color:#000;}
-#waveform{width:80%;max-width:600px;margin-top:2rem;}
+/* --- Навигация --- */
+nav {
+  position: fixed; top: 0; width: 100%;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+.nav__logo a {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.nav__links {
+  display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;
+}
+.nav__links a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .3s;
+}
+.nav__links a:hover,
+.nav__links a.active {
+  color: #4ca1af;
+}
+.nav__burger {
+  display: none;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+}
+@media(max-width:768px){
+  .nav__links { display: none; flex-direction: column; position: absolute; top: 100%; right: 2rem; background: rgba(0,0,0,0.8); padding: 1rem; border-radius: 8px; }
+  .nav__links.show { display: flex; }
+  .nav__burger { display: block; }
+}
 
-/* Features */
-#features h2{color:#0ff;text-shadow:0 0 10px #0ff;font-size:2.5rem;margin-bottom:2rem;}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;width:100%;max-width:960px;}
-.feature-card{background:rgba(255,255,255,0.05);padding:1rem;border:1px solid #0ff;border-radius:8px;text-align:center;transition:transform .3s;}
-.feature-card:hover{transform:translateY(-5px);}
+/* --- Hero --- */
+#home h1 {
+  color: #fff;
+  font-size: 3rem;
+  margin-bottom: .5rem;
+}
+#home p {
+  color: #eee;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.btn {
+  display: inline-block;
+  padding: .8rem 1.6rem;
+  border: 2px solid #4ca1af;
+  color: #4ca1af;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background .3s, color .3s;
+}
+.btn:hover {
+  background: #4ca1af;
+  color: #fff;
+}
 
-/* Commands */
-#commands h2{color:#0ff;text-shadow:0 0 10px #0ff;font-size:2.5rem;margin-bottom:2rem;}
-.commands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;width:100%;max-width:960px;}
-.cmd-card{background:rgba(255,255,255,0.05);padding:1rem;border:1px solid #0ff;border-radius:8px;display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;transition:transform .3s;}
-.cmd-card h3{margin:0;color:#0ff;}
-.cmd-card p{margin:0;color:#ddd;}
-.cmd-card:hover{transform:translateY(-5px);background:rgba(255,255,255,0.1);}
+/* --- Features & Commands & FAQ --- */
+h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 960px;
+  margin-top: 1rem;
+}
+.card, .cmd-card {
+  background: rgba(255,255,255,0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(76,161,175,0.5);
+  transition: transform .3s, background .3s;
+}
+.card:hover, .cmd-card:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-5px);
+}
+.cmd-card code {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  color: #4ca1af;
+}
+.cmd-card span {
+  color: #ddd;
+}
 
-/* FAQ */
-#faq h2{color:#0ff;text-shadow:0 0 10px #0ff;font-size:2.5rem;margin-bottom:2rem;}
-details{width:100%;max-width:600px;margin-bottom:1rem;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid #0ff;border-radius:8px;}
-details summary{cursor:pointer;color:#0ff;font-weight:600;}
-details p{margin-top:.5rem;color:#ddd;}
+/* --- FAQ details --- */
+details {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 1rem;
+}
+details summary {
+  color: #4ca1af;
+  font-weight: 600;
+  cursor: pointer;
+}
+details p {
+  margin-top: .5rem;
+  color: #eee;
+}
+
+/* --- Waveform placeholder --- */
+#waveform {
+  width: 80%;
+  max-width: 600px;
+  margin-top: 2rem;
+}
