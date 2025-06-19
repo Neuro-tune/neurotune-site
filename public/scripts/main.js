@@ -1,33 +1,31 @@
-// Intersection Observer для плавного fade-in/out секций
+// Fade-in panels with Intersection Observer
 const panels = document.querySelectorAll('.panel');
-const io = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-    else e.target.classList.remove('visible');
+    e.target.classList.toggle('visible', e.isIntersecting);
   });
 }, { threshold: 0.5 });
 
-panels.forEach(p => io.observe(p));
+panels.forEach(p => observer.observe(p));
 
-// Плавный скролл по якорям
+// Smooth scroll & active nav link
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
-    document.querySelector(a.getAttribute('href'))
-      .scrollIntoView({behavior: 'smooth'});
-    // Активная ссылка
-    document.querySelectorAll('.nav__links a')
-      .forEach(link => link.classList.remove('active'));
+    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    document.querySelectorAll('.nav__links a').forEach(l => l.classList.remove('active'));
     a.classList.add('active');
+    // mobile menu close
+    document.querySelector('.nav__links').classList.remove('show');
   });
 });
 
-// Бургер-меню для мобилок
-const burger = document.querySelector('.nav__burger');
-const navLinks = document.querySelector('.nav__links');
-burger?.addEventListener('click', () => navLinks.classList.toggle('show'));
+// Burger menu toggle
+document.querySelector('.nav__burger')?.addEventListener('click', () => {
+  document.querySelector('.nav__links').classList.toggle('show');
+});
 
-// Простая волна-заглушка (или WaveSurfer)
+// WaveSurfer audio waveform
 if (window.WaveSurfer) {
   const wavesurfer = WaveSurfer.create({
     container: '#waveform',
@@ -35,5 +33,5 @@ if (window.WaveSurfer) {
     progressColor: '#4ca1af',
     height: 80, barWidth: 2, responsive: true
   });
-  wavesurfer.load('/assets/sample.mp3');
+  wavesurfer.load('/public/sample.mp3');
 }
