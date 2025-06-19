@@ -1,166 +1,113 @@
-/* --- Базовая обвязка и Scroll Snap --- */
+/* ---------------- Base & Scroll Snap ---------------- */
 html, body {
-  height: 100%;
-  margin: 0;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  height: 100%; margin: 0; overflow: hidden; font-family: 'Segoe UI', sans-serif;
 }
 main {
-  height: 100%;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  height: 100%; overflow-y: scroll; scroll-snap-type: y mandatory;
 }
 .panel {
-  position: relative;
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  box-sizing: border-box;
-
-  /* Начальное состояние — скрыто */
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity .6s ease, transform .6s ease;
+  height: 100vh; scroll-snap-align: start;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
 }
 .panel.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; transform: translateY(0);
 }
 
-/* --- Мягкий градиентный фон --- */
+/* -------------- Soft Gradient Background -------------- */
 .bg-gradient {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: linear-gradient(135deg, #2c3e50, #4ca1af);
   z-index: -2;
 }
+.bg-notes {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: url('/assets/note-pattern.png') repeat;
+  opacity: 0.04; animation: moveNotes 60s linear infinite; z-index: -1;
+}
+@keyframes moveNotes {
+  from { background-position: 0 0; }
+  to   { background-position: -500px -500px; }
+}
 
-/* --- Навигация --- */
-nav {
-  position: fixed; top: 0; width: 100%;
+/* ---------------- Navigation ---------------- */
+.nav {
+  position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.4); backdrop-filter: blur(8px);
   z-index: 1000;
 }
 .nav__logo a {
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
+  color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none;
 }
 .nav__links {
   display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;
 }
 .nav__links a {
-  color: #ddd;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color .3s;
+  color: #ddd; text-decoration: none; font-weight: 500; transition: color .3s;
 }
-.nav__links a:hover,
-.nav__links a.active {
+.nav__links a.active,
+.nav__links a:hover {
   color: #4ca1af;
 }
 .nav__burger {
-  display: none;
-  font-size: 1.8rem;
-  color: #fff;
-  cursor: pointer;
+  display: none; font-size: 1.8rem; color: #fff; cursor: pointer;
 }
-@media(max-width:768px){
-  .nav__links { display: none; flex-direction: column; position: absolute; top: 100%; right: 2rem; background: rgba(0,0,0,0.8); padding: 1rem; border-radius: 8px; }
+@media (max-width: 768px) {
+  .nav__links { display: none; flex-direction: column; position: absolute; top: 100%; right: 2rem;
+    background: rgba(0,0,0,0.8); padding: 1rem; border-radius: 8px;
+  }
   .nav__links.show { display: flex; }
   .nav__burger { display: block; }
 }
 
-/* --- Hero --- */
+/* ---------------- Hero ---------------- */
 #home h1 {
-  color: #fff;
-  font-size: 3rem;
-  margin-bottom: .5rem;
+  color: #fff; font-size: 3rem; margin: 0 0 .5rem; text-align: center;
 }
 #home p {
-  color: #eee;
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  color: #eee; font-size: 1.2rem; margin-bottom: 1.5rem; text-align: center;
 }
 .btn {
-  display: inline-block;
-  padding: .8rem 1.6rem;
-  border: 2px solid #4ca1af;
-  color: #4ca1af;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: background .3s, color .3s;
+  display: inline-block; padding: .8rem 1.6rem;
+  border: 2px solid #4ca1af; color: #4ca1af;
+  border-radius: 999px; text-decoration: none; transition: background .3s, color .3s;
 }
 .btn:hover {
-  background: #4ca1af;
-  color: #fff;
+  background: #4ca1af; color: #fff;
 }
 
-/* --- Features & Commands & FAQ --- */
-h2 {
-  color: #fff;
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-}
+/* ---------------- Cards ---------------- */
 .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 1rem;
-  width: 100%;
-  max-width: 960px;
-  margin-top: 1rem;
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  width: 100%; max-width: 960px; margin-top: 1rem;
 }
 .card, .cmd-card {
-  background: rgba(255,255,255,0.05);
-  padding: 1rem;
-  border-radius: 8px;
+  background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;
   border: 1px solid rgba(76,161,175,0.5);
   transition: transform .3s, background .3s;
 }
 .card:hover, .cmd-card:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-5px);
+  background: rgba(255,255,255,0.1); transform: translateY(-5px);
 }
 .cmd-card code {
-  display: block;
-  font-size: 1.1rem;
-  margin-bottom: .5rem;
-  color: #4ca1af;
+  display: block; margin-bottom: .5rem; color: #4ca1af; font-size:1.1rem;
 }
-.cmd-card span {
-  color: #ddd;
-}
+.cmd-card span { color: #ddd; }
 
-/* --- FAQ details --- */
+/* ---------------- FAQ ---------------- */
 details {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 1rem;
-  background: rgba(255,255,255,0.05);
-  border-radius: 8px;
-  padding: 1rem;
+  width: 100%; max-width: 600px; margin: 0 auto 1rem;
+  padding: 1rem; background: rgba(255,255,255,0.05); border-radius:8px; border:1px solid rgba(76,161,175,0.5);
 }
 details summary {
-  color: #4ca1af;
-  font-weight: 600;
-  cursor: pointer;
+  color: #4ca1af; font-weight: 600; cursor: pointer;
 }
-details p {
-  margin-top: .5rem;
-  color: #eee;
-}
+details p { margin-top: .5rem; color: #eee; }
 
-/* --- Waveform placeholder --- */
+/* ---------------- Waveform ---------------- */
 #waveform {
-  width: 80%;
-  max-width: 600px;
-  margin-top: 2rem;
+  width: 80%; max-width: 600px; margin-top: 2rem;
 }
