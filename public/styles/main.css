@@ -1,130 +1,47 @@
-/* ========== Base & Scroll Snap ========== */
-html, body {
-  height: 100%; margin: 0;
-  scroll-snap-type: y mandatory; overflow-y: scroll;
-  scroll-behavior: smooth;
-  font-family: 'Segoe UI', sans-serif;
-  background: #0b0b15; color: #fff;
-}
-main { height: 100%; }
-.section {
-  scroll-snap-align: start;
-  height: 100vh; display: flex;
-  flex-direction: column; align-items: center; justify-content: center;
-  padding: 2rem; box-sizing: border-box;
-  background: rgba(0,0,0,0.2);
-}
+/* Base & Scroll Snap */
+html, body {height:100%;margin:0;overflow:hidden;}
+main   {height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;}
+.panel {scroll-snap-align:start;height:100vh;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:2rem;box-sizing:border-box;}
 
-/* ========== Live Neon Background ========== */
-.music-bg {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  background: radial-gradient(ellipse at center, #1b1b2f 0%, #0b0b15 100%);
-  z-index: -2; overflow: hidden;
-}
-.music-bg::after {
-  content: "";
-  position: absolute; width:200%; height:200%;
-  background: url('https://i.imgur.com/HMFZ4Ej.png') repeat;
-  animation: moveNotes 60s linear infinite;
-  opacity: 0.03;
-}
-@keyframes moveNotes {
-  from { transform: translate(0,0); } to { transform: translate(-50%,-50%); }
-}
+/* Background */
+.bg-wrapper, .music-bg {position:fixed;top:0;left:0;width:100%;height:100%;}
+.bg-gradient {background:linear-gradient(135deg,#8e2de2,#4a00e0);filter:blur(100px);opacity:0.3;height:100%;width:100%;}
+.bg-notes {background:url('../assets/note-pattern.png') repeat;opacity:0.06;animation:move 60s linear infinite;height:100%;width:100%;}
+@keyframes move{from{background-position:0 0}to{background-position:-500px -500px}}
 
-/* ========== Navigation ========== */
-nav {
-  position: fixed; top:0; width:100%;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:1rem 2rem; background:rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px); z-index:1000;
-}
-.logo a {
-  color: cyan; font-size:1.5rem; font-weight:bold;
-  text-decoration:none;
-}
-.nav-links {
-  display:flex; gap:1.5rem; list-style:none; margin:0; padding:0;
-}
-.nav-links a {
-  color: cyan; text-decoration:none; font-weight:500;
-  transition: color .3s;
-}
-.nav-links a:hover { color: #fff; }
-.burger { display:none; font-size:1.8rem; color:cyan; cursor:pointer; }
+/* Nav */
+.nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;backdrop-filter:blur(10px);background:rgba(0,0,0,0.4);z-index:10;}
+.nav .logo{color:#0ff;font-size:1.5rem;font-weight:700;text-decoration:none;}
+.nav__links{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;}
+.nav__links a{color:#fff;text-decoration:none;font-weight:500;transition:color .3s;}
+.nav__links a:hover{color:#0ff;}
+.burger{display:none;font-size:1.8rem;color:#0ff;cursor:pointer;}
+@media(max-width:768px){.nav__links{display:none;flex-direction:column;background:rgba(0,0,0,0.9);position:absolute;top:100%;right:2rem;padding:1rem;border-radius:8px;} .nav__links.show{display:flex;} .burger{display:block;}}
 
-/* ========== Progress Bar ========== */
-#progressBar {
-  position:fixed; top:0; left:0;
-  height:4px; width:0; background:cyan; z-index:999;
-}
+/* Hero */
+#home .panel__content {text-align:center;color:#fff;}
+#home h1{font-size:3rem;text-shadow:0 0 10px #0ff;margin-bottom:1rem;}
+#home p{font-size:1.2rem;margin-bottom:2rem;color:#ddd;}
+.btn{display:inline-block;padding:.8rem 1.6rem;border:2px solid #0ff;color:#0ff;border-radius:999px;text-decoration:none;transition:all .3s;}
+.btn:hover{background:#0ff;color:#000;}
+#waveform{width:80%;max-width:600px;margin-top:2rem;}
 
-/* ========== Hero ========== */
-header h1 {
-  font-size:3rem; color:cyan; text-shadow:0 0 20px cyan;
-}
-header p { font-size:1.2rem; margin:1rem 0; color:#ccc; }
-.buttons a {
-  margin:0 .5rem; padding:.6rem 1.2rem;
-  border:1px solid cyan; border-radius:8px;
-  color:cyan; text-decoration:none;
-  transition: background .3s, color .3s;
-}
-.buttons a:hover { background:cyan; color:#000; }
+/* Features */
+#features h2{color:#0ff;text-shadow:0 0 10px #0ff;font-size:2.5rem;margin-bottom:2rem;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;width:100%;max-width:960px;}
+.feature-card{background:rgba(255,255,255,0.05);padding:1rem;border:1px solid #0ff;border-radius:8px;text-align:center;transition:transform .3s;}
+.feature-card:hover{transform:translateY(-5px);}
 
-/* ========== Grids ========== */
-.grid {
-  display:grid; gap:1rem;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  width:100%; max-width:960px;
-}
+/* Commands */
+#commands h2{color:#0ff;text-shadow:0 0 10px #0ff;font-size:2.5rem;margin-bottom:2rem;}
+.commands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;width:100%;max-width:960px;}
+.cmd-card{background:rgba(255,255,255,0.05);padding:1rem;border:1px solid #0ff;border-radius:8px;display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;transition:transform .3s;}
+.cmd-card h3{margin:0;color:#0ff;}
+.cmd-card p{margin:0;color:#ddd;}
+.cmd-card:hover{transform:translateY(-5px);background:rgba(255,255,255,0.1);}
 
-/* ========== Feature Cards & Command Boxes ========== */
-.card, .cmd-box {
-  padding:1rem; border:1px solid cyan; border-radius:8px;
-  background: rgba(255,255,255,0.05);
-  transition: transform .3s, background .3s;
-}
-.card:hover, .cmd-box:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-5px);
-}
-.commands-grid { display:grid; gap:1rem;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-}
-
-/* ========== Tabs (если понадобятся) ========== */
-.tabs { display:flex; gap:1rem; margin-bottom:1rem; }
-.tab-btn {
-  padding:.5rem 1rem; border:1px solid cyan; border-radius:8px;
-  background:transparent; color:cyan; cursor:pointer;
-  transition:background .3s, color .3s;
-}
-.tab-btn.active, .tab-btn:hover {
-  background:cyan; color:#000;
-}
-
-/* ========== FAQ ========== */
-details {
-  width:100%; max-width:600px;
-  margin-bottom:1rem; padding:1rem;
-  border:1px solid cyan; border-radius:8px;
-  background: rgba(255,255,255,0.05);
-}
-details summary {
-  font-weight:bold; cursor:pointer; color:cyan;
-}
-details p { margin-top:.5rem; color:#ddd; }
-
-/* ========== Waveform ========== */
-#waveform { width:80%; max-width:600px; margin-top:2rem; }
-
-/* ========== Responsive ========== */
-@media(max-width:768px){
-  .nav-links { display:none; flex-direction:column;
-    position:absolute; top:100%; right:0;
-    background:rgba(0,0,0,0.9); width:200px; padding:1rem;
-  }
-  .nav-links.show { display:flex; }
-  .burger { display:block; }
-}
+/* FAQ */
+#faq h2{color:#0ff;text-shadow:0 0 10px #0ff;font-size:2.5rem;margin-bottom:2rem;}
+details{width:100%;max-width:600px;margin-bottom:1rem;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid #0ff;border-radius:8px;}
+details summary{cursor:pointer;color:#0ff;font-weight:600;}
+details p{margin-top:.5rem;color:#ddd;}
